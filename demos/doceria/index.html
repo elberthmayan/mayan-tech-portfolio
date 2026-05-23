@@ -89,15 +89,20 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-bakery-terracotta selection:text-white bg-texture">
+<body class="antialiased selection:bg-bakery-terracotta selection:text-white bg-texture pt-10 md:pt-0">
+
+    <!-- Mobile Top Return Link -->
+    <a href="../../index.html" class="md:hidden absolute top-0 inset-x-0 h-10 bg-bakery-linen/30 flex items-center justify-center gap-2 text-[9px] font-bold uppercase tracking-widest text-bakery-cocoa border-b border-bakery-linen/50">
+        <i class="ph ph-arrow-left"></i> Voltar ao Portfólio
+    </a>
 
     <!-- Floating WA Button -->
     <a href="javascript:void(0)" onclick="openDirectWA()" class="floating-wa">
         <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
     </a>
 
-    <!-- Floating Return Link -->
-    <a href="../../index.html" class="fixed bottom-32 md:bottom-auto md:top-24 left-1/2 -translate-x-1/2 z-[60] bg-white/80 backdrop-blur-md border border-bakery-linen px-4 py-2 rounded-full flex items-center gap-2 shadow-sm hover:shadow-md transition-all group scale-90 md:scale-100">
+    <!-- Floating Return Link (Desktop Only) -->
+    <a href="../../index.html" class="hidden md:flex fixed top-24 left-1/2 -translate-x-1/2 z-[60] bg-white/80 backdrop-blur-md border border-bakery-linen px-4 py-2 rounded-full items-center gap-2 shadow-sm hover:shadow-md transition-all group">
         <div class="w-6 h-6 bg-bakery-cocoa rounded-full flex items-center justify-center text-[10px] font-bold text-white font-display italic">MT</div>
         <span class="text-[10px] font-bold uppercase tracking-widest text-bakery-cocoa">Modelo por <span class="text-bakery-terracotta">Mayan Tech</span></span>
         <i class="ph ph-arrow-left text-bakery-cocoa group-hover:-translate-x-1 transition-transform"></i>
@@ -259,6 +264,13 @@
     <!-- Footer Minimalista -->
     <footer class="py-12 px-6 md:px-8 bg-bakery-cocoa text-white">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <!-- Mobile Return Link -->
+            <a href="../../index.html" class="md:hidden flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10">
+                <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[8px] font-bold text-bakery-cocoa font-display italic">MT</div>
+                <span class="text-[9px] font-bold uppercase tracking-widest text-white/80">Modelo por Mayan Tech</span>
+                <i class="ph ph-arrow-left text-white/60"></i>
+            </a>
+
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-bakery-terracotta rounded-lg flex items-center justify-center text-white">
                     <i class="ph-fill ph-cookie text-lg"></i>

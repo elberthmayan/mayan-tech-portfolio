@@ -98,15 +98,20 @@
         .tech-placeholder { background: #F1F5F9; border: 1px solid #E2E8F0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1E3A8A; }
     </style>
 </head>
-<body class="antialiased selection:bg-corporate-navy selection:text-white">
+<body class="antialiased selection:bg-corporate-navy selection:text-white pt-10 md:pt-0">
+
+    <!-- Mobile Top Return Link -->
+    <a href="../../index.html" class="md:hidden absolute top-0 inset-x-0 h-10 bg-blue-50/50 flex items-center justify-center gap-2 text-[9px] font-bold uppercase tracking-widest text-corporate-navy border-b border-blue-100">
+        <i class="ph ph-arrow-left"></i> Voltar ao Portfólio
+    </a>
 
     <!-- Floating WA Button -->
     <a href="javascript:void(0)" onclick="openDirectWA()" class="floating-wa">
         <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
     </a>
 
-    <!-- Floating Return Link -->
-    <a href="../../index.html" class="fixed bottom-32 md:bottom-auto md:top-24 left-1/2 -translate-x-1/2 z-[60] bg-white/80 backdrop-blur-md border border-corporate-border px-4 py-2 rounded-full flex items-center gap-2 shadow-sm hover:shadow-md transition-all group scale-90 md:scale-100">
+    <!-- Floating Return Link (Desktop Only) -->
+    <a href="../../index.html" class="hidden md:flex fixed top-24 left-1/2 -translate-x-1/2 z-[60] bg-white/80 backdrop-blur-md border border-corporate-border px-4 py-2 rounded-full items-center gap-2 shadow-sm hover:shadow-md transition-all group">
         <div class="w-6 h-6 bg-corporate-navy rounded-full flex items-center justify-center text-[10px] font-bold text-white font-display italic">MT</div>
         <span class="text-[10px] font-bold uppercase tracking-widest text-corporate-slate">Modelo por <span class="text-corporate-navy">Mayan Tech</span></span>
         <i class="ph ph-arrow-left text-corporate-slate group-hover:-translate-x-1 transition-transform"></i>
@@ -293,6 +298,13 @@
     <!-- Footer Minimalista -->
     <footer class="py-10 px-6 bg-slate-900 border-t border-white/5">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            <!-- Mobile Return Link -->
+            <a href="../../index.html" class="md:hidden flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[8px] font-bold text-corporate-navy font-display italic">MT</div>
+                <span class="text-[9px] font-bold uppercase tracking-widest text-white/80">Modelo por Mayan Tech</span>
+                <i class="ph ph-arrow-left text-white/60"></i>
+            </a>
+
             <div class="flex items-center gap-3">
                 <div class="w-6 h-6 bg-corporate-navy rounded flex items-center justify-center text-white">
                     <i class="ph-fill ph-wrench"></i>
