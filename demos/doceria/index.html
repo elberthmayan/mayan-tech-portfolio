@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Doceria | Doces Feitos à Mão</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='900' fill='%230066FF'>M</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        bakery: {
+                            cocoa: '#3C2A21',
+                            terracotta: '#D46A45',
+                            cream: '#FDF8F5',
+                            linen: '#F1E4D8',
+                            sugar: '#FFFFFF'
+                        },
+                        wa: {
+                            bg: '#EFEAE2',
+                            header: '#008069',
+                            bubble: '#D9FDD3',
+                            panel: '#F0F2F5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FDF8F5; color: #334155; overflow-x: hidden; font-family: 'Manrope', sans-serif; }
+        .bg-texture { background-image: radial-gradient(#F1E4D8 1.5px, transparent 1.5px); background-size: 30px 32px; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .bakery-placeholder { background: #F1E4D8; border: 2px solid #E7D4C5; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #3C2A21; position: relative; }
+        
+        .drawer-overlay { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); transition: all 0.4s ease; opacity: 0; pointer-events: none; }
+        .drawer-overlay.active { opacity: 1; pointer-events: auto; }
+        .drawer-content { transform: translateX(100%); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #FFFFFF; }
+        .drawer-content.active { transform: translateX(0); }
+
+        .bakery-btn { background: #3C2A21; color: #FFFFFF; transition: all 0.3s ease; }
+        .bakery-btn:hover { background: #D46A45; transform: scale(1.02); }
+        .blob-img { border-radius: 65% 35% 39% 61% / 40% 50% 50% 60%; }
+
+        /* Refined Drawer Styles */
+        .drawer-content { background: #FFFFFF; box-shadow: -20px 0 50px rgba(0,0,0,0.05); }
+        .bakery-input { background: #FDF8F5; border: 1px solid #F1E4D8; border-radius: 1rem; transition: all 0.3s ease; }
+        .bakery-input:focus { border-color: #D46A45; outline: none; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(212, 106, 69, 0.05); }
+        
+        .cart-item { border-bottom: 1px solid #F1E4D8; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        .cart-item:last-child { border-bottom: none; }
+
+        #wa-simulator-overlay { position: fixed; inset: 0; z-index: 1000; display: none; background: #000; }
+        #wa-simulator-overlay.active { display: block; }
+        
+        .floating-wa {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            background: #25D366;
+            color: white;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-bakery-terracotta selection:text-white bg-texture">
+
+    <!-- Floating WA Button -->
+    <a href="javascript:void(0)" onclick="openDirectWA()" class="floating-wa">
+        <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+    </a>
+
+    <!-- Floating Return Link -->
+    <a href="../../index.html" class="fixed top-24 left-1/2 -translate-x-1/2 z-[60] bg-white/80 backdrop-blur-md border border-bakery-linen px-4 py-2 rounded-full flex items-center gap-2 shadow-sm hover:shadow-md transition-all group">
+        <div class="w-6 h-6 bg-bakery-cocoa rounded-full flex items-center justify-center text-[10px] font-bold text-white font-display italic">MT</div>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-bakery-cocoa">Modelo por <span class="text-bakery-terracotta">Mayan Tech</span></span>
+        <i class="ph ph-arrow-left text-bakery-cocoa group-hover:-translate-x-1 transition-transform"></i>
+    </a>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 inset-x-0 z-50 h-20 flex items-center bg-white/90 backdrop-blur-md border-b border-bakery-linen px-8 lg:px-12 justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-bakery-terracotta rounded-xl flex items-center justify-center text-white shadow-lg shadow-bakery-terracotta/20">
+                <i class="ph-fill ph-bowl-food text-2xl"></i>
+            </div>
+            <span class="font-display text-xl font-black tracking-tight text-bakery-cocoa uppercase">NOME DA DOCERIA</span>
+        </div>
+        <button onclick="document.getElementById('cardapio').scrollIntoView()" class="bg-bakery-cocoa text-white px-8 py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-bakery-terracotta transition-all shadow-md">
+            PEDIR AGORA
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative pt-44 pb-32 px-8 lg:px-12 min-h-[85vh] flex items-center text-center lg:text-left text-nowrap">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            <div class="lg:col-span-7 reveal active text-balance">
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-8 text-bakery-cocoa text-balance">
+                    O Sabor Real do <br> <span class="text-bakery-terracotta italic underline decoration-bakery-linen decoration-8 underline-offset-4 text-balance">Doce Feito em Casa.</span>
+                </h1>
+                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-lg mx-auto lg:mx-0 text-balance">
+                    Eu sei que um docinho pode mudar o dia de alguém. Por isso, coloco todo o meu cuidado em cada fornada, usando ingredientes reais e muito carinho.
+                </p>
+                <button onclick="document.getElementById('cardapio').scrollIntoView()" class="bakery-btn px-12 py-5 rounded-2xl font-black text-lg shadow-xl shadow-bakery-cocoa/20 flex items-center justify-center gap-3 text-nowrap">
+                    Ver cardápio <i class="ph ph-arrow-down"></i>
+                </button>
+            </div>
+            
+            <div class="lg:col-span-5 relative hidden lg:block reveal active" style="transition-delay: 0.3s;">
+                <div class="w-full aspect-square rounded-[3.5rem] overflow-hidden bakery-placeholder border-8 border-white shadow-2xl relative rotate-3 group hover:rotate-0 transition-transform duration-700">
+                    <i class="ph ph-camera text-8xl opacity-10"></i>
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] mt-4 opacity-30 text-nowrap">Sua Foto Principal</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- História -->
+    <section id="historia" class="py-40 px-8 lg:px-12 overflow-hidden bg-white/30 text-nowrap">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="relative reveal order-2 lg:order-1 text-nowrap">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-bakery-terracotta/10 rounded-full blur-[80px]"></div>
+                    <div class="relative z-10 w-full aspect-[4/5] bakery-placeholder blob-img shadow-2xl border-8 border-white">
+                        <i class="ph ph-image-square text-6xl opacity-10"></i>
+                        <p class="text-[9px] font-black uppercase tracking-widest mt-4 opacity-30">Foto da sua Cozinha</p>
+                    </div>
+                </div>
+                <div class="reveal order-1 lg:order-2 text-balance" style="transition-delay: 0.2s;">
+                    <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-6 block">Minha História</span>
+                    <h2 class="font-display text-5xl md:text-7xl font-bold mb-10 leading-tight">Onde a paixão se tornou <span class="italic text-bakery-terracotta">doçura.</span></h2>
+                    <p class="text-xl text-slate-500 font-medium leading-relaxed mb-10 text-balance">
+                        O [Nome da Doceria] nasceu de um sonho e do amor pela cozinha. Cada receita aqui carrega um pedacinho da minha história e o compromisso de usar apenas o que há de melhor para você.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cardápio Section -->
+    <section id="cardapio" class="py-40 px-8 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-32 reveal">
+                <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-4 block text-nowrap">Menu Completo</span>
+                <h2 class="font-display text-5xl md:text-7xl font-black text-bakery-cocoa tracking-tighter italic text-nowrap">Escolha o seu mimo.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Produto 1 -->
+                <div class="bg-white border border-bakery-linen rounded-[3rem] p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm">
+                    <div class="aspect-square rounded-[2.5rem] overflow-hidden mb-8 bakery-placeholder relative">
+                        <i class="ph ph-camera text-6xl opacity-10"></i>
+                        <p class="text-[8px] font-black uppercase tracking-widest mt-2 opacity-30 text-nowrap">Foto do Produto</p>
+                    </div>
+                    <div class="flex-1 px-2 text-nowrap">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Bolo de Cenoura</h3>
+                            <span class="text-xl font-black text-bakery-terracotta">R$ 45</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium mb-10 leading-relaxed text-balance">Fofinho e com aquela calda de chocolate artesanal que a gente não resiste.</p>
+                    </div>
+                    <button onclick="addToCart('Bolo de Cenoura', 45)" class="bakery-btn w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">
+                        Adicionar à cesta
+                    </button>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="bg-white border border-bakery-linen rounded-[3rem] p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm" style="transition-delay: 0.1s;">
+                    <div class="aspect-square rounded-[2.5rem] overflow-hidden mb-8 bakery-placeholder relative">
+                        <i class="ph ph-camera text-6xl opacity-10"></i>
+                        <p class="text-[8px] font-black uppercase tracking-widest mt-2 opacity-30 text-nowrap text-nowrap">Foto do Produto</p>
+                    </div>
+                    <div class="flex-1 px-2 text-nowrap">
+                        <div class="flex justify-between items-start mb-4 text-nowrap">
+                            <h3 class="text-2xl font-black text-bakery-cocoa uppercase tracking-tight text-nowrap">Kit Brigadeiros</h3>
+                            <span class="text-xl font-black text-bakery-terracotta">R$ 38</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium mb-10 leading-relaxed text-balance">Uma caixinha com 12 abraços em forma de brigadeiro gourmet.</p>
+                    </div>
+                    <button onclick="addToCart('Kit de Brigadeiro', 38)" class="bakery-btn w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">
+                        Adicionar à cesta
+                    </button>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="bg-white border border-bakery-linen rounded-[3rem] p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm" style="transition-delay: 0.2s;">
+                    <div class="aspect-square rounded-[2.5rem] overflow-hidden mb-8 bakery-placeholder relative">
+                        <i class="ph ph-camera text-6xl opacity-10"></i>
+                        <p class="text-[8px] font-black uppercase tracking-widest mt-2 opacity-30 text-nowrap">Foto do Produto</p>
+                    </div>
+                    <div class="flex-1 px-2 text-nowrap">
+                        <div class="flex justify-between items-start mb-4 text-nowrap">
+                            <h3 class="text-2xl font-black text-bakery-cocoa uppercase tracking-tight text-nowrap">Torta de Limão</h3>
+                            <span class="text-xl font-black text-bakery-terracotta">R$ 15</span>
+                        </div>
+                        <p class="text-slate-500 text-sm font-medium mb-10 leading-relaxed text-balance">O equilíbrio perfeito entre o azedinho e o doce, feita hoje.</p>
+                    </div>
+                    <button onclick="addToCart('Torta de Limão', 15)" class="bakery-btn w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">
+                        Adicionar à cesta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avaliações Section -->
+    <section id="avaliacoes" class="py-32 px-8 bg-bakery-linen/20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-24 reveal text-nowrap">
+                <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Depoimentos</span>
+                <h2 class="font-display text-5xl md:text-7xl font-black text-bakery-cocoa tracking-tighter italic">O que estão falando...</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-12 rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance">
+                    <div class="flex text-yellow-500 mb-6 justify-center"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p class="text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Gente, juro! É o melhor bolo que já comi. Dá pra sentir que é feito em casa mesmo, super fresquinho."</p>
+                    <p class="font-display font-bold text-xl uppercase tracking-tighter">Mari Albuquerque</p>
+                </div>
+                <div class="p-12 rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance" style="transition-delay: 0.1s;">
+                    <div class="flex text-yellow-500 mb-6 justify-center"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p class="text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Atendimento maravilhoso. Pedi pelo Zap e chegou impecável. Os brigadeiros sumiram em 5 minutos aqui em casa!"</p>
+                    <p class="font-display font-bold text-xl uppercase tracking-tighter">Ricardo Soares</p>
+                </div>
+                <div class="p-12 rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance" style="transition-delay: 0.2s;">
+                    <div class="flex text-yellow-500 mb-6 justify-center"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p class="text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Melhor escolha pro café da tarde. Simplesmente apaixonada pelo capricho e pelo sabor."</p>
+                    <p class="font-display font-bold text-xl uppercase tracking-tighter">Larissa Lima</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Minimalista -->
+    <footer class="py-12 px-8 bg-bakery-cocoa text-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-nowrap">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-bakery-terracotta rounded-lg flex items-center justify-center text-white">
+                    <i class="ph-fill ph-cookie text-lg"></i>
+                </div>
+                <span class="font-display text-xl font-black tracking-tight uppercase">NOME DA DOCERIA</span>
+            </div>
+            
+            <div class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-bakery-linen/50 text-nowrap">
+                <a href="javascript:void(0)" onclick="openDirectWA()" class="hover:text-white transition-colors flex items-center gap-2 italic">
+                    <i class="ph-fill ph-whatsapp-logo text-lg text-green-500"></i> Pedir pelo WhatsApp
+                </a>
+                <span class="opacity-20 hidden md:block">•</span>
+                <span class="italic">© 2026 Belo Horizonte, MG</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHECKOUT DRAWER -->
+    <div id="drawer-overlay" class="fixed inset-0 z-[100] drawer-overlay" onclick="closeDrawer()"></div>
+    <div id="drawer-content" class="fixed top-0 right-0 h-full w-full max-w-lg bg-white z-[110] drawer-content p-8 md:p-12 overflow-y-auto flex flex-col">
+        <div class="flex items-center justify-between mb-12">
+            <div>
+                <h2 class="font-display text-3xl font-bold text-bakery-cocoa tracking-tight italic">Minha Cesta</h2>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-bakery-terracotta mt-1">Sua seleção de doçuras</p>
+            </div>
+            <button onclick="closeDrawer()" class="text-slate-300 hover:text-bakery-terracotta transition-colors p-2"><i class="ph ph-x text-2xl"></i></button>
+        </div>
+
+        <form id="checkout-form" onsubmit="event.preventDefault(); showSimulator();" class="flex-1 flex flex-col">
+            <!-- Cart Items List -->
+            <div id="cart-items-list" class="flex-1 overflow-y-auto pr-2 mb-12 space-y-6">
+                <!-- Items will be injected here -->
+            </div>
+
+            <!-- Client Info Section -->
+            <div class="space-y-8 pt-8 border-t border-bakery-linen">
+                <div class="space-y-3">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Como podemos te chamar?</label>
+                    <input type="text" id="cust-name" required placeholder="Seu nome completo" class="w-full h-14 bakery-input px-6 font-semibold text-bakery-cocoa">
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Como prefere receber?</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="delivery" value="Entrega" checked onchange="toggleAddress(true)" class="hidden peer">
+                            <div class="py-4 rounded-xl border border-bakery-linen text-center text-[10px] font-bold uppercase tracking-widest text-slate-400 peer-checked:border-bakery-terracotta peer-checked:text-bakery-terracotta peer-checked:bg-bakery-terracotta/5 transition-all">Entrega</div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="delivery" value="Retirada" onchange="toggleAddress(false)" class="hidden peer">
+                            <div class="py-4 rounded-xl border border-bakery-linen text-center text-[10px] font-bold uppercase tracking-widest text-slate-400 peer-checked:border-bakery-terracotta peer-checked:text-bakery-terracotta peer-checked:bg-bakery-terracotta/5 transition-all">Vou buscar</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="address-field" class="space-y-3">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Endereço de Entrega</label>
+                    <textarea id="cust-address" placeholder="Rua, número e bairro" class="w-full h-24 bakery-input p-6 font-semibold text-bakery-cocoa resize-none text-sm"></textarea>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">Forma de Pagamento</label>
+                    <select id="cust-payment" required class="w-full h-14 bakery-input px-6 font-semibold text-bakery-cocoa appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23D46A45%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:20px] bg-[right_1.5rem_center] bg-no-repeat">
+                        <option value="Pix">Pix (mais rápido)</option>
+                        <option value="Cartão">Cartão</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="pt-8 mt-8 border-t border-bakery-linen">
+                <div class="flex justify-between items-baseline mb-8">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Total do Pedido</span>
+                    <span class="text-3xl font-display font-bold text-bakery-terracotta italic">R$ <span id="total-display">0,00</span></span>
+                </div>
+                <button type="submit" class="w-full py-6 rounded-2xl bg-bakery-cocoa text-white font-bold text-xs uppercase tracking-[0.3em] shadow-xl hover:bg-bakery-terracotta transition-all">
+                    Finalizar no WhatsApp
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- RESPONSIVE WA SIMULATOR -->
+    <div id="wa-simulator-overlay" class="font-sans">
+        <!-- Desktop View -->
+        <div id="wa-desktop" class="hidden h-screen bg-[#111b21] md:flex items-center justify-center p-6 text-nowrap">
+            <div class="w-full max-w-[1200px] h-full bg-[#222e35] shadow-2xl flex rounded-lg overflow-hidden border border-white/5">
+                <div class="w-[350px] border-r border-white/5 flex flex-col bg-[#111b21]">
+                    <div class="h-16 bg-[#202c33] flex items-center px-4 justify-between">
+                        <div class="w-10 h-10 rounded-full bg-slate-600"></div>
+                        <div class="flex gap-6"><i class="ph ph-chat-circle-dots text-white/60 text-xl text-nowrap"></i><i class="ph ph-dots-three-vertical text-white/60 text-xl text-nowrap"></i></div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center justify-center text-center p-10 opacity-20 text-nowrap text-balance">
+                        <i class="ph ph-whatsapp-logo text-8xl text-white mb-6"></i>
+                        <h2 class="text-white text-2xl font-light mb-2">WhatsApp Web</h2>
+                        <p class="text-xs text-white uppercase tracking-widest">Cozinha Digital</p>
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat">
+                    <div class="h-16 bg-[#202c33] flex items-center px-4 gap-4">
+                        <div class="w-10 h-10 rounded-full bg-bakery-terracotta flex items-center justify-center text-white shadow-lg"><i class="ph-fill ph-storefront"></i></div>
+                        <div class="flex-1">
+                            <div class="text-white font-medium">Cozinha da Doceria</div>
+                            <div class="text-[10px] text-green-500 uppercase font-bold">Online Now</div>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-10 flex flex-col justify-end text-nowrap text-balance">
+                        <div class="bg-wa-bubble rounded-xl rounded-tr-none p-6 shadow-md max-w-[500px] self-end relative border border-black/5 text-nowrap text-balance">
+                            <pre id="desktop-msg" class="whitespace-pre-wrap font-sans text-sm text-[#111b21] leading-relaxed text-nowrap text-balance"></pre>
+                            <div class="text-[10px] text-black/30 mt-3 text-right text-nowrap text-balance">sent now ✓✓</div>
+                        </div>
+                    </div>
+                    <div class="h-16 bg-[#202c33] flex items-center px-4 gap-4">
+                        <i class="ph ph-smiley text-white/60 text-2xl text-nowrap"></i>
+                        <div class="flex-1 bg-[#2a3942] h-10 rounded-lg px-4 flex items-center text-white/40 text-sm italic">Encaminhando sua mensagem...</div>
+                        <div class="w-10 h-10 rounded-full bg-bakery-terracotta flex items-center justify-center text-white shadow-lg"><i class="ph-fill ph-paper-plane-tilt text-nowrap"></i></div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="closeSimulator()" class="absolute top-10 left-10 text-white/40 hover:text-white transition-colors flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-nowrap"><i class="ph ph-arrow-left"></i> VOLTAR AO SITE</button>
+        </div>
+
+        <!-- Mobile View -->
+        <div id="wa-mobile" class="md:hidden h-screen bg-[#efeae2] flex flex-col text-nowrap">
+            <div class="bg-wa-header p-5 flex items-center gap-4 text-white shrink-0">
+                <button onclick="closeSimulator()"><i class="ph ph-arrow-left text-xl text-nowrap"></i></button>
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"><i class="ph-fill ph-storefront text-xl text-nowrap"></i></div>
+                <div class="flex-1">
+                    <div class="font-bold text-base">Cozinha da Doceria</div>
+                    <div class="text-[10px] opacity-70 uppercase font-bold">Online agora</div>
+                </div>
+                <i class="ph ph-phone-fill text-xl text-nowrap"></i>
+            </div>
+            <div class="flex-1 bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat p-4 flex flex-col justify-end text-nowrap text-balance">
+                <div class="bg-white rounded-lg rounded-tl-none p-3 shadow-sm text-xs mb-4 self-start max-w-[80%] text-nowrap text-balance">Olá! Recebi seu pedido pelo site. Só um minutinho que já vou confirmar aqui.</div>
+                <div class="bg-wa-bubble rounded-lg rounded-tr-none p-4 shadow-md max-w-[90%] self-end relative text-nowrap text-balance">
+                    <pre id="mobile-msg" class="whitespace-pre-wrap font-sans text-sm text-[#111b21] text-nowrap text-balance"></pre>
+                    <div class="text-[10px] text-black/30 mt-2 text-right italic text-nowrap text-balance">visto agora ✓✓</div>
+                </div>
+            </div>
+            <div class="bg-[#f0f2f5] p-3 flex items-center gap-3 shrink-0 text-nowrap">
+                <div class="flex-1 bg-white h-12 rounded-full px-5 flex items-center text-slate-400 text-sm italic text-nowrap">Sua mensagem foi enviada.</div>
+                <div class="w-12 h-12 bg-wa-header rounded-full flex items-center justify-center text-white shadow-lg text-nowrap"><i class="ph-fill ph-paper-plane-tilt text-nowrap"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        let cart = [];
+
+        function renderCart() {
+            const listContainer = document.getElementById('cart-items-list');
+            listContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                listContainer.innerHTML += `
+                    <div class="cart-item flex items-center gap-6">
+                        <div class="w-20 h-20 bg-bakery-linen/30 rounded-2xl overflow-hidden flex items-center justify-center shrink-0">
+                            <i class="ph ph-cookie text-3xl text-bakery-terracotta/40"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-bakery-cocoa leading-tight">${item.name}</h4>
+                                <button onclick="removeItem(${index})" class="text-slate-300 hover:text-red-400 transition-colors"><i class="ph ph-trash text-lg"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-4">
+                                    <button onclick="updateQty(${index}, -1)" class="w-8 h-8 rounded-lg border border-bakery-linen flex items-center justify-center text-slate-400 hover:bg-bakery-terracotta hover:text-white transition-all">−</button>
+                                    <span class="font-bold text-bakery-cocoa w-4 text-center">${item.quantity}</span>
+                                    <button onclick="updateQty(${index}, 1)" class="w-8 h-8 rounded-lg border border-bakery-linen flex items-center justify-center text-slate-400 hover:bg-bakery-terracotta hover:text-white transition-all">+</button>
+                                </div>
+                                <span class="font-bold text-bakery-terracotta">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('total-display').innerText = total.toFixed(2).replace('.', ',');
+            
+            if (cart.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center p-12 opacity-30">
+                        <i class="ph ph-shopping-bag-open text-6xl mb-4"></i>
+                        <p class="text-sm font-bold uppercase tracking-widest">Sua cesta está vazia</p>
+                    </div>
+                `;
+            }
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            renderCart();
+            openDrawer();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        function updateQty(index, val) {
+            cart[index].quantity = Math.max(1, cart[index].quantity + val);
+            renderCart();
+        }
+
+        function openDrawer() {
+            document.getElementById('drawer-overlay').classList.add('active');
+            document.getElementById('drawer-content').classList.add('active');
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer-overlay').classList.remove('active');
+            document.getElementById('drawer-content').classList.remove('active');
+        }
+
+        function toggleAddress(show) {
+            document.getElementById('address-field').style.display = show ? 'block' : 'none';
+        }
+
+        function showSimulator() {
+            if (cart.length === 0) return alert('Sua cesta está vazia!');
+            
+            const name = document.getElementById('cust-name').value;
+            const deliv = document.querySelector('input[name="delivery"]:checked').value;
+            const address = document.getElementById('cust-address').value;
+            const payment = document.getElementById('cust-payment').value;
+            
+            let totalGeral = 0;
+            let msg = `*NOVO PEDIDO - SITE*\n------------------\n`;
+            
+            cart.forEach(item => {
+                const sub = item.price * item.quantity;
+                totalGeral += sub;
+                msg += `• ${item.quantity}x ${item.name} - R$ ${sub.toFixed(2)}\n`;
+            });
+            
+            msg += `------------------\n*TOTAL: R$ ${totalGeral.toFixed(2)}*\n\n`;
+            msg += `Cliente: ${name.toUpperCase()}\n`;
+            msg += `Logística: ${deliv}\n`;
+            if(deliv === 'Entrega') msg += `Endereço: ${address.toUpperCase()}\n`;
+            msg += `Pagamento: ${payment}\n\n`;
+            msg += `Olá! Gostaria de confirmar meu pedido feito pelo site.`;
+
+            document.getElementById('mobile-msg').innerText = msg;
+            document.getElementById('desktop-msg').innerText = msg;
+            closeDrawer();
+            document.getElementById('wa-simulator-overlay').classList.add('active');
+        }
+
+        function openDirectWA() {
+            const msg = "Olá! Vi o site da Bella Doceria e gostaria de trocar uma ideia.";
+            document.getElementById('mobile-msg').innerText = msg;
+            document.getElementById('desktop-msg').innerText = msg;
+            document.getElementById('wa-simulator-overlay').classList.add('active');
+        }
+
+        function closeSimulator() {
+            document.getElementById('wa-simulator-overlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

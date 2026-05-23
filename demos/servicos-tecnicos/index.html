@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOME DA SUA ASSISTÊNCIA | Assistência Técnica Especializada</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='900' fill='%230066FF'>M</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        corporate: {
+                            bg: '#F8FAFC',
+                            white: '#FFFFFF',
+                            navy: '#1E3A8A',
+                            navyHover: '#1E40AF',
+                            slate: '#1E293B',
+                            text: '#334155',
+                            muted: '#64748B',
+                            border: '#E2E8F0'
+                        },
+                        wa: {
+                            bg: '#EFEAE2',
+                            header: '#008069',
+                            bubble: '#D9FDD3',
+                            panel: '#F0F2F5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F8FAFC; color: #334155; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, .font-display { font-family: 'Montserrat', sans-serif; color: #1E293B; }
+        
+        .service-card { 
+            background: #FFFFFF; 
+            border: 1px solid #E2E8F0;
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover { 
+            border-color: #1E3A8A; 
+            transform: translateY(-4px); 
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.08); 
+        }
+
+        #wa-simulator-overlay { position: fixed; inset: 0; z-index: 1000; display: none; background: #000; }
+        #wa-simulator-overlay.active { display: block; }
+
+        .reveal { opacity: 0; transform: translateY(15px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Drawer Styles */
+        .drawer-overlay { background: rgba(15, 23, 42, 0.3); backdrop-filter: blur(8px); transition: all 0.4s ease; opacity: 0; pointer-events: none; }
+        .drawer-overlay.active { opacity: 1; pointer-events: auto; }
+        .drawer-content { transform: translateX(100%); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #FFFFFF; }
+        .drawer-content.active { transform: translateX(0); }
+
+        .corporate-input { background: #F8FAFC; border: 1px solid #E2E8F0; transition: all 0.2s ease; border-radius: 0.75rem; }
+        .corporate-input:focus { border-color: #1E3A8A; outline: none; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.05); }
+
+        .floating-wa {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            background: #25D366;
+            color: white;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        .floating-wa:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+        
+        .tech-placeholder { background: #F1F5F9; border: 1px solid #E2E8F0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1E3A8A; }
+    </style>
+</head>
+<body class="antialiased selection:bg-corporate-navy selection:text-white">
+
+    <!-- Floating WA Button -->
+    <a href="javascript:void(0)" onclick="openDirectWA()" class="floating-wa">
+        <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+    </a>
+
+    <!-- Floating Return Link -->
+    <a href="../../index.html" class="fixed top-24 left-1/2 -translate-x-1/2 z-[60] bg-white/80 backdrop-blur-md border border-corporate-border px-4 py-2 rounded-full flex items-center gap-2 shadow-sm hover:shadow-md transition-all group">
+        <div class="w-6 h-6 bg-corporate-navy rounded-full flex items-center justify-center text-[10px] font-bold text-white font-display italic text-nowrap">MT</div>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-corporate-slate text-nowrap">Modelo por <span class="text-corporate-navy">Mayan Tech</span></span>
+        <i class="ph ph-arrow-left text-corporate-slate group-hover:-translate-x-1 transition-transform text-nowrap"></i>
+    </a>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 inset-x-0 z-50 h-16 flex items-center px-6 lg:px-12 justify-between bg-white/90 backdrop-blur-md border-b border-corporate-border text-nowrap">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-corporate-navy rounded flex items-center justify-center text-white">
+                <i class="ph-fill ph-wrench text-xl"></i>
+            </div>
+            <span class="font-display font-bold text-lg tracking-tight uppercase">NOME DA SUA ASSISTÊNCIA</span>
+        </div>
+        <button onclick="contactTechnician('Orçamento Geral')" class="bg-corporate-navy text-white px-5 py-2 rounded-lg font-bold text-xs uppercase tracking-wide hover:bg-corporate-navyHover transition-all text-nowrap">
+            Me chama no Zap
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="pt-44 pb-24 px-6 lg:px-12 max-w-5xl mx-auto text-center text-nowrap">
+        <div class="reveal active">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-widest mb-6 text-corporate-navy bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100 text-nowrap">Técnico Particular de Confiança</span>
+            <h1 class="text-4xl md:text-6xl font-display font-bold leading-tight mb-8 tracking-tight text-nowrap">
+                Eu cuido da sua tecnologia <br> <span class="text-corporate-navy">com precisão e rapidez.</span>
+            </h1>
+            <p class="text-corporate-muted text-lg md:text-xl font-normal max-w-2xl mx-auto leading-relaxed text-balance text-nowrap">
+                Sou especialista em reparos de hardware e software. Do seu celular quebrado ao seu computador lento, eu resolvo.
+            </p>
+        </div>
+        
+        <div class="mt-16 max-w-4xl mx-auto reveal active" style="transition-delay: 0.2s;">
+            <div class="aspect-video rounded-3xl overflow-hidden tech-placeholder border border-corporate-border shadow-2xl">
+                <i class="ph ph-desktop text-7xl opacity-10"></i>
+                <p class="text-[11px] font-bold uppercase tracking-[0.4em] mt-6 opacity-30 text-nowrap">Sua Foto na Bancada de Trabalho</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Serviços Detalhados -->
+    <section id="servicos" class="py-24 px-6 lg:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal text-nowrap">
+            <h2 class="text-3xl font-display font-bold mb-4">Como eu posso te ajudar?</h2>
+            <p class="text-corporate-muted max-w-2xl mx-auto">Clique no serviço que você precisa e fale direto comigo pelo WhatsApp.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Computadores, Notebooks & Montagem -->
+            <div onclick="contactTechnician('Manutenção e Montagem de PC/Notebook')" class="service-card p-10 cursor-pointer group reveal flex flex-col">
+                <div class="aspect-video rounded-xl overflow-hidden mb-8 tech-placeholder">
+                    <i class="ph ph-monitor text-4xl opacity-10"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-6 text-nowrap">Computadores & Notebooks</h3>
+                <ul class="space-y-3 mb-10 flex-1 text-nowrap">
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Limpeza e Pasta Térmica</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Upgrades (SSD e Memória RAM)</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Montagem de PC Gamer e Office</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Reparo de Carcaça e Placa</li>
+                </ul>
+                <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-corporate-navy group-hover:underline text-nowrap">
+                    Me chama no Zap <i class="ph ph-arrow-right"></i>
+                </div>
+            </div>
+
+            <!-- Formatação & Sistemas -->
+            <div onclick="contactTechnician('Formatação e Softwares')" class="service-card p-10 cursor-pointer group reveal flex flex-col" style="transition-delay: 0.1s;">
+                <div class="aspect-video rounded-xl overflow-hidden mb-8 tech-placeholder">
+                    <i class="ph ph-hard-drive text-4xl opacity-10"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-6 text-nowrap">Sistemas & Softwares</h3>
+                <ul class="space-y-3 mb-10 flex-1 text-nowrap">
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Formatação (Windows 10 e 11)</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Instalação de Pacote Office</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Remoção de Vírus e Malwares</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap"><i class="ph ph-check-circle text-corporate-navy"></i> Instalação de Programas em Geral</li>
+                </ul>
+                <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-corporate-navy group-hover:underline text-nowrap">
+                    Me chama no Zap <i class="ph ph-arrow-right"></i>
+                </div>
+            </div>
+
+            <!-- Celulares -->
+            <div onclick="contactTechnician('Conserto de Celulares')" class="service-card p-10 cursor-pointer group reveal flex flex-col" style="transition-delay: 0.2s;">
+                <div class="aspect-video rounded-xl overflow-hidden mb-8 tech-placeholder">
+                    <i class="ph ph-device-mobile text-4xl opacity-10"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-6 text-nowrap">Smartphones</h3>
+                <ul class="space-y-3 mb-10 flex-1 text-nowrap text-nowrap">
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap text-nowrap"><i class="ph ph-check-circle text-corporate-navy text-nowrap"></i> Troca de Tela e Bateria</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap text-nowrap"><i class="ph ph-check-circle text-corporate-navy text-nowrap"></i> Reparo em Conector de Carga</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap text-nowrap"><i class="ph ph-check-circle text-corporate-navy text-nowrap"></i> Recuperação de Aparelho Molhado</li>
+                    <li class="flex items-center gap-3 text-sm text-corporate-muted text-nowrap text-nowrap"><i class="ph ph-check-circle text-corporate-navy text-nowrap"></i> Desbloqueio e Reparos em Placa</li>
+                </ul>
+                <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-corporate-navy group-hover:underline text-nowrap">
+                    Me chama no Zap <i class="ph ph-arrow-right text-nowrap"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="py-24 px-6 lg:px-12 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full text-nowrap"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal text-nowrap">
+                <h2 class="text-3xl font-display font-bold mb-4 text-white">O que meus clientes dizem</h2>
+                <div class="flex justify-center gap-1 text-yellow-400 mb-2 text-nowrap">
+                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                </div>
+                <p class="text-slate-400">Nota 5.0 no Google com mais de 200 avaliações.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl reveal text-balance">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center font-bold text-blue-400">RL</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Ricardo Lima</h4>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Cliente há 2 anos</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic text-balance">"Meu notebook estava impossível de usar, travando muito. Levei para fazer o upgrade de SSD e formatação. Agora parece que comprei um computador novo! Atendimento nota 10."</p>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl reveal text-balance" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center font-bold text-purple-400">AF</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Amanda Ferreira</h4>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Troca de Tela iPhone</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic text-balance">"Troquei a tela do meu iPhone e ficou perfeita. O que mais gostei foi a transparência, me explicaram sobre a qualidade da peça e entregaram no prazo combinado."</p>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl reveal text-balance" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center font-bold text-green-400">GS</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Gabriel Souza</h4>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Montagem de PC Gamer</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic text-balance">"Contratei a montagem do meu PC e a organização de cabos. O trabalho ficou impecável, super limpo e o computador está voando nos jogos. Recomendo demais!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre / Garantia -->
+    <section id="sobre" class="py-32 px-6 lg:px-12 bg-white border-y border-corporate-border text-nowrap">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
+            <div class="reveal text-balance text-nowrap">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-10 tracking-tight text-balance text-nowrap">Compromisso com a <span class="text-corporate-navy text-nowrap">sua tranquilidade.</span></h2>
+                <div class="space-y-12">
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 text-corporate-navy shadow-sm">
+                            <i class="ph-bold ph-shield-check text-xl"></i>
+                        </div>
+                        <div class="text-balance text-nowrap">
+                            <h4 class="font-bold text-xl mb-2 text-balance text-nowrap">Transparência Total</h4>
+                            <p class="text-corporate-muted text-base leading-relaxed text-balance">Faço questão de explicar cada etapa do processo. Você acompanha o diagnóstico e entende exatamente o que será feito no seu aparelho.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 text-corporate-navy shadow-sm">
+                            <i class="ph-bold ph-medal text-xl"></i>
+                        </div>
+                        <div class="text-balance text-nowrap">
+                            <h4 class="font-bold text-xl mb-2 text-balance">Garantia e Suporte</h4>
+                            <p class="text-corporate-muted text-base leading-relaxed text-balance">Meu trabalho não termina na entrega. Todos os serviços possuem garantia de 90 dias e fico à disposição para tirar qualquer dúvida que surgir depois.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal relative" style="transition-delay: 0.2s;">
+                <div class="aspect-[4/3] rounded-3xl overflow-hidden tech-placeholder border border-corporate-border shadow-2xl">
+                    <i class="ph ph-wrench text-6xl opacity-10"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.4em] mt-4 opacity-30 text-nowrap">Foto da sua Bancada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Minimalista -->
+    <footer class="py-10 px-6 bg-slate-900 border-t border-white/5 text-nowrap">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-nowrap">
+            <div class="flex items-center gap-3 text-nowrap">
+                <div class="w-6 h-6 bg-corporate-navy rounded flex items-center justify-center text-white">
+                    <i class="ph-fill ph-wrench"></i>
+                </div>
+                <span class="font-display font-bold text-base tracking-tight text-white uppercase text-nowrap">TECHMASTER</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8 text-nowrap">
+                <a href="javascript:void(0)" onclick="openDirectWA()" class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors flex items-center gap-2 italic text-nowrap">
+                    <i class="ph-fill ph-whatsapp-logo text-lg text-green-500 text-nowrap"></i> Meu WhatsApp Principal
+                </a>
+                <span class="hidden md:block w-px h-4 bg-white/10 text-nowrap"></span>
+                <p class="text-[10px] font-medium text-slate-500 uppercase tracking-widest italic text-nowrap">© 2026 Belo Horizonte, MG</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- QUOTE DRAWER -->
+    <div id="drawer-overlay" class="fixed inset-0 z-[100] drawer-overlay" onclick="closeDrawer()"></div>
+    <div id="drawer-content" class="fixed top-0 right-0 h-full w-full max-w-lg z-[110] drawer-content p-8 md:p-12 flex flex-col shadow-2xl border-l border-corporate-border text-nowrap text-balance">
+        <div class="flex items-center justify-between mb-10 text-nowrap">
+            <h2 class="font-display text-2xl font-bold tracking-tight text-corporate-slate uppercase text-nowrap">Solicitar Orçamento</h2>
+            <button onclick="closeDrawer()" class="text-corporate-muted hover:text-corporate-navy transition-colors text-nowrap text-nowrap"><i class="ph ph-x text-2xl"></i></button>
+        </div>
+
+        <form id="quote-form" onsubmit="handleTechSubmit(event)" class="flex-1 flex flex-col space-y-8 text-nowrap">
+            <div class="p-5 bg-blue-50/50 rounded-2xl border border-blue-100/50 text-nowrap">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-corporate-navy mb-1 text-nowrap">Serviço de Interesse</p>
+                <p id="selected-tech-service" class="font-display text-lg font-bold text-corporate-slate text-nowrap"></p>
+            </div>
+
+            <div class="space-y-6 flex-1 overflow-y-auto pr-2 text-nowrap">
+                <div class="space-y-3 text-nowrap">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-corporate-muted text-nowrap">Seu Nome</label>
+                    <input type="text" id="tech-cust-name" required class="w-full h-12 corporate-input px-5 font-medium text-sm text-corporate-slate text-nowrap" placeholder="Ex: João Silva">
+                </div>
+
+                <div class="space-y-3 text-nowrap">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-corporate-muted text-nowrap">Aparelho / Modelo</label>
+                    <input type="text" id="tech-device" required class="w-full h-12 corporate-input px-5 font-medium text-sm text-corporate-slate text-nowrap" placeholder="Ex: iPhone 13, Notebook Dell G15">
+                </div>
+
+                <div class="space-y-3 text-nowrap">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-corporate-muted text-nowrap">O que está acontecendo?</label>
+                    <textarea id="tech-problem" required class="w-full h-32 corporate-input p-5 font-medium text-sm text-corporate-slate resize-none text-nowrap" placeholder="Descreva brevemente o defeito ou o serviço que precisa..."></textarea>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-corporate-border text-nowrap">
+                <button type="submit" class="w-full py-5 bg-corporate-navy text-white rounded-xl font-bold text-xs uppercase tracking-[0.2em] hover:bg-corporate-navyHover transition-all shadow-lg shadow-corporate-navy/10 text-nowrap">
+                    Enviar para o Técnico
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- RESPONSIVE WA SIMULATOR -->
+    <div id="wa-simulator-overlay" class="font-sans">
+        <!-- Desktop -->
+        <div id="wa-desktop" class="hidden h-screen bg-[#111b21] md:flex items-center justify-center p-6 text-nowrap text-balance">
+            <div class="w-full max-w-[1200px] h-full bg-[#222e35] shadow-2xl flex rounded-lg overflow-hidden border border-white/5">
+                <div class="w-[350px] border-r border-white/5 flex flex-col bg-[#111b21]">
+                    <div class="h-16 bg-[#202c33] flex items-center px-4 justify-between text-nowrap">
+                        <div class="w-10 h-10 rounded-full bg-slate-600 text-nowrap"></div>
+                        <div class="flex gap-6"><i class="ph ph-chat-circle-dots text-white/60 text-xl text-nowrap"></i><i class="ph ph-dots-three-vertical text-white/60 text-xl text-nowrap"></i></div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center justify-center text-center p-10 opacity-20 text-nowrap text-balance">
+                        <i class="ph ph-whatsapp-logo text-8xl text-white mb-6"></i>
+                        <h2 class="text-white text-2xl font-light mb-2">WhatsApp Web</h2>
+                        <p class="text-xs text-white uppercase tracking-widest">Suporte Técnico</p>
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat">
+                    <div class="h-16 bg-[#202c33] flex items-center px-4 gap-4">
+                        <div class="w-10 h-10 rounded-full bg-corporate-navy flex items-center justify-center text-white shadow-lg"><i class="ph-fill ph-wrench"></i></div>
+                        <div class="flex-1">
+                            <div class="text-white font-medium">Bancada do Técnico</div>
+                            <div class="text-[10px] text-green-500 uppercase font-bold">Online Now</div>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-10 flex flex-col justify-end text-nowrap text-balance">
+                        <div class="bg-wa-bubble rounded-xl rounded-tr-none p-6 shadow-md max-w-[500px] self-end relative border border-black/5 text-nowrap text-balance">
+                            <pre id="desktop-msg" class="whitespace-pre-wrap font-sans text-sm text-[#111b21] leading-relaxed text-nowrap text-balance"></pre>
+                            <div class="text-[10px] text-black/30 mt-3 text-right text-nowrap text-balance">sent now ✓✓</div>
+                        </div>
+                    </div>
+                    <div class="h-16 bg-[#202c33] flex items-center px-4 gap-4">
+                        <i class="ph ph-smiley text-white/60 text-2xl text-nowrap text-nowrap"></i>
+                        <div class="flex-1 bg-[#2a3942] h-10 rounded-lg px-4 flex items-center text-white/40 text-sm italic">Encaminhando sua mensagem...</div>
+                        <div class="w-10 h-10 rounded-full bg-corporate-navy flex items-center justify-center text-white shadow-lg text-nowrap text-nowrap"><i class="ph-fill ph-paper-plane-tilt text-nowrap"></i></div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="closeSimulator()" class="absolute top-10 left-10 text-white/40 hover:text-white transition-colors flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-nowrap"><i class="ph ph-arrow-left"></i> VOLTAR AO SITE</button>
+        </div>
+
+        <!-- Mobile -->
+        <div id="wa-mobile" class="md:hidden h-screen bg-[#E5DDD5] flex flex-col text-nowrap text-balance">
+            <div class="bg-wa-header p-5 flex items-center gap-4 text-white shrink-0 shadow-lg">
+                <button onclick="closeSimulator()"><i class="ph ph-arrow-left text-xl text-nowrap"></i></button>
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"><i class="ph-fill ph-wrench text-xl text-nowrap"></i></div>
+                <div class="flex-1">
+                    <div class="font-bold text-base">Bancada do Técnico</div>
+                    <div class="text-[10px] opacity-70 font-bold uppercase tracking-wider">Online agora</div>
+                </div>
+                <i class="ph ph-phone-fill text-xl text-nowrap"></i>
+            </div>
+            <div class="flex-1 p-5 flex flex-col justify-end relative text-nowrap text-balance">
+                <div class="absolute inset-0 opacity-[0.2] pointer-events-none bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat text-nowrap text-balance"></div>
+                <div class="bg-white rounded-lg rounded-tl-none p-4 shadow-sm text-xs mb-6 self-start max-w-[80%] text-slate-800 z-10 italic border border-black/5 text-nowrap text-balance">Olá! Já recebi sua mensagem. Pode falar o que precisa que eu já te respondo!</div>
+                <div class="bg-wa-bubble rounded-lg rounded-tr-none p-5 shadow-md max-w-[90%] self-end relative z-10 border border-[#c6e9a7] text-nowrap text-balance">
+                    <pre id="mobile-msg" class="whitespace-pre-wrap font-sans text-sm text-[#111b21] text-nowrap text-balance"></pre>
+                    <div class="text-[10px] text-black/30 mt-2 text-right text-nowrap text-balance">enviado agora ✓✓</div>
+                </div>
+            </div>
+            <div class="bg-[#f0f2f5] p-3 flex items-center gap-3 shrink-0 text-nowrap text-balance text-nowrap">
+                <div class="flex-1 bg-white h-12 rounded-full px-5 flex items-center text-slate-400 text-xs italic text-nowrap text-balance text-nowrap">Sua mensagem foi enviada</div>
+                <div class="w-12 h-12 bg-wa-header rounded-full flex items-center justify-center text-white shadow-lg text-nowrap text-balance text-nowrap"><i class="ph-fill ph-paper-plane-tilt text-xl text-nowrap text-balance text-nowrap"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        let selectedService = '';
+
+        function contactTechnician(serviceName) {
+            selectedService = serviceName;
+            document.getElementById('selected-tech-service').innerText = serviceName;
+            document.getElementById('drawer-overlay').classList.add('active');
+            document.getElementById('drawer-content').classList.add('active');
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer-overlay').classList.remove('active');
+            document.getElementById('drawer-content').classList.remove('active');
+        }
+
+        function handleTechSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('tech-cust-name').value;
+            const device = document.getElementById('tech-device').value;
+            const problem = document.getElementById('tech-problem').value;
+
+            let msg = `*PEDIDO DE ORÇAMENTO*\n\n`;
+            msg += `Serviço: ${selectedService.toUpperCase()}\n`;
+            msg += `Cliente: ${name.toUpperCase()}\n`;
+            msg += `Aparelho: ${device.toUpperCase()}\n`;
+            msg += `Problema: ${problem}\n\n`;
+            msg += `Olá! Gostaria de uma estimativa de preço e tempo para esse reparo.`;
+
+            document.getElementById('desktop-msg').innerText = msg;
+            document.getElementById('mobile-msg').innerText = msg;
+            closeDrawer();
+            document.getElementById('wa-simulator-overlay').classList.add('active');
+        }
+
+        function openDirectWA() {
+            const msg = "Olá! Vi seu site de Assistência Técnica e gostaria de um orçamento.";
+            document.getElementById('mobile-msg').innerText = msg;
+            document.getElementById('desktop-msg').innerText = msg;
+            document.getElementById('wa-simulator-overlay').classList.add('active');
+        }
+
+        function closeSimulator() {
+            document.getElementById('wa-simulator-overlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

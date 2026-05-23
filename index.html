@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAYAN TECH | Sua marca com destaque no digital</title>
+  
+  <!-- SEO & Social Media Meta Tags -->
+  <meta name="description" content="Criação de Landing Pages profissionais e otimização de Google Meu Negócio. Sites que conectam você aos seus clientes direto no WhatsApp.">
+  <meta property="og:title" content="MAYAN TECH | Sua marca com destaque no digital">
+  <meta property="og:description" content="Transforme seu negócio com um site profissional que vende. Direto no seu WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./img/Doceria.webp"> 
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='900' fill='%230066FF'>M</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <script>
+    const PHONE_NUMBER = '5531980159559';
+
+    function openWhatsApp(message) {
+      const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              accent: '#0066FF',
+              dark: '#0F172A',
+              bg: '#FFFFFF',
+              surface: '#F8FAFC',
+              muted: '#64748B'
+            },
+            wa: {
+                bg: '#EFEAE2',
+                header: '#008069',
+                bubble: '#D9FDD3',
+                panel: '#F0F2F5'
+            }
+          },
+          animation: {
+            'float-slow': 'float 8s ease-in-out infinite',
+            'float-fast': 'float 5s ease-in-out infinite',
+            'scroll': 'scroll 40s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-15px)' },
+            },
+            scroll: {
+              from: { transform: 'translateX(0)' },
+              to: { transform: 'translateX(-50%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { 
+      background: #FFFFFF; 
+      color: #0F172A; 
+      font-family: 'Inter', sans-serif; 
+      -webkit-font-smoothing: antialiased; 
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    .text-balance { text-wrap: balance; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: #0066FF;
+      color: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: -0.01em;
+    }
+    .btn-primary:hover {
+      background: #0052CC;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -10px rgba(0, 102, 255, 0.3);
+    }
+
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+    }
+    .marquee-content {
+      display: flex;
+      gap: 4rem;
+      animation: scroll 60s linear infinite;
+    }
+
+    .bg-grid {
+      background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .pricing-card {
+      border: 1px solid #F1F5F9;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pricing-card:hover {
+      border-color: #0066FF;
+      box-shadow: 0 30px 60px -12px rgba(0,0,0,0.05);
+      transform: translateY(-5px);
+    }
+
+    #wa-simulator-overlay { position: fixed; inset: 0; z-index: 1000; display: none; background: #000; }
+    #wa-simulator-overlay.active { display: block; }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-white bg-grid">
+
+  <!-- Floating WA Button -->
+  <a href="javascript:void(0)" onclick="sendGeneralMessage()" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform">
+    <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+  </a>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 inset-x-0 z-[100] h-20 flex items-center bg-white/70 backdrop-blur-xl border-b border-slate-100/50 px-6">
+    <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+      <div class="font-display text-xl font-extrabold tracking-tight flex items-center">
+        MAYAN<span class="text-brand-accent">TECH</span>
+      </div>
+      <a href="javascript:void(0)" onclick="sendGeneralMessage()" class="btn-primary px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest">
+        Entrar em contato
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="relative pt-44 pb-32 px-6 overflow-hidden min-h-[70vh] flex items-center justify-center text-center">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-50/40 via-transparent to-transparent -z-10"></div>
+    <div class="max-w-4xl mx-auto relative z-10 text-balance">
+      <h1 class="text-6xl md:text-[6rem] font-extrabold tracking-tight leading-[1.1] mb-10 font-display reveal active">
+        Dê ao seu negócio a <br> <span class="text-brand-accent italic relative">casa digital <svg class="absolute -bottom-2 left-0 w-full opacity-20" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9C118.957 4.47226 239.043 1.02774 355 3" stroke="#0066FF" stroke-width="6" stroke-linecap="round"/></svg></span> que ele merece.
+      </h1>
+      <p class="max-w-2xl mx-auto text-lg md:text-xl text-brand-muted font-medium leading-relaxed mb-12 reveal active" style="transition-delay: 0.1s;">
+        Eu sei que você coloca o coração no seu trabalho. Eu faço o mesmo aqui, criando sites que aproximam você dos seus clientes de um jeito simples e acolhedor.
+      </p>
+    </div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/20 blur-[120px] rounded-full -z-10 animate-pulse"></div>
+  </header>
+
+  <!-- Marquee Textual -->
+  <div class="py-12 border-y border-slate-100 bg-white/50 backdrop-blur-sm overflow-hidden group">
+    <div class="marquee-container relative">
+      <div class="marquee-content flex gap-12 whitespace-nowrap animate-scroll items-center">
+        <span class="text-[10px] font-bold uppercase tracking-[0.6em] text-slate-300 group-hover:text-brand-accent transition-colors duration-700">
+          Eu ajudo o seu negócio • Design com alma • Sites que conectam • Proximidade real • Parceiro do seu crescimento • Direto no Zap • Sem complicações
+        </span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.6em] text-slate-300 group-hover:text-brand-accent transition-colors duration-700">
+          Eu ajudo o seu negócio • Design com alma • Sites que conectam • Proximidade real • Parceiro do seu crescimento • Direto no Zap • Sem complicações
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Showcase -->
+  <section id="acervo" class="py-40 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-32 reveal">
+        <span class="text-brand-accent font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">Portfólio</span>
+        <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight font-display mb-8 text-balance">Conheça alguns dos <br> <span class="text-slate-300 italic">meus trabalhos.</span></h2>
+        <p class="text-xl text-brand-muted font-medium">Veja abaixo algumas demonstrações de como eu posso apresentar o seu negócio.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
+        <!-- Item: Doceria -->
+        <div class="reveal">
+          <div class="aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 group relative shadow-sm border border-slate-100">
+            <img src="./img/Doceria.webp" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 bg-brand-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="bg-white text-brand-dark px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Abrir demonstração</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-brand-accent uppercase tracking-widest mb-3 block text-center">Vendas</span>
+            <h3 class="text-2xl font-extrabold mb-4 tracking-tight font-display text-balance text-center text-nowrap">Modelo Doceria</h3>
+            <p class="text-brand-muted text-sm mb-8 font-medium leading-relaxed text-center text-balance">Um site que abre o apetite. Ideal para quem quer mostrar seus produtos e facilitar o pedido no WhatsApp com um toque caseiro.</p>
+            <div class="text-center">
+              <a href="./demos/doceria/index.html" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-brand-accent transition-colors text-nowrap">Abrir demonstração <i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item: Assistência Técnica -->
+        <div class="reveal" style="transition-delay: 0.1s;">
+          <div class="aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 group relative shadow-sm border border-slate-100">
+            <img src="./img/assistencia_tecnica.webp" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 bg-brand-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="bg-white text-brand-dark px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Abrir demonstração</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-brand-accent uppercase tracking-widest mb-3 block text-center">Orçamentos</span>
+            <h3 class="text-2xl font-extrabold mb-4 tracking-tight font-display text-balance text-center text-balance">Modelo Assistência Técnica</h3>
+            <p class="text-brand-muted text-sm mb-8 font-medium leading-relaxed text-center text-balance">Focado em confiança e clareza. Perfeito para técnicos que precisam de um canal direto para orçamentos de manutenção, formatação e upgrades.</p>
+            <div class="text-center">
+              <a href="./demos/servicos-tecnicos/index.html" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-brand-accent transition-colors">Abrir demonstração <i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item: Personal Nail -->
+        <div class="reveal" style="transition-delay: 0.2s;">
+          <div class="aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 group relative shadow-sm border border-slate-100">
+            <img src="./img/Nail Design.webp" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+            <div class="absolute inset-0 bg-brand-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="bg-white text-brand-dark px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Abrir demonstração</span>
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-brand-accent uppercase tracking-widest mb-3 block text-center">Agendamento</span>
+            <h3 class="text-2xl font-extrabold mb-4 tracking-tight font-display text-balance text-center text-balance text-nowrap">Modelo Nail Designer</h3>
+            <p class="text-brand-muted text-sm mb-8 font-medium leading-relaxed text-center text-balance">Sofisticação em cada detalhe. Criado para quem vende serviços de beleza e luxo, focando em um agendamento elegante e prático.</p>
+            <div class="text-center">
+              <a href="./demos/personal-nail/index.html" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-brand-accent transition-colors">Abrir demonstração <i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="metodologia" class="py-40 px-6 bg-slate-50 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-32">
+      <div class="flex-1 reveal text-balance">
+        <span class="text-brand-accent font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">Como eu Trabalho</span>
+        <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-10 font-display text-balance text-nowrap">Seu cliente escolhe no site <br> <span class="italic text-brand-accent underline decoration-blue-100 text-nowrap">e já cai no seu Zap.</span></h2>
+        <p class="text-xl text-brand-muted font-medium leading-relaxed mb-12">
+          Não é apenas um site, é uma ferramenta de vendas. Eu crio uma página única que organiza o desejo do seu cliente e entrega ele pronto para você fechar negócio.
+        </p>
+        <ul class="space-y-8 mb-12">
+          <li class="flex items-start gap-6">
+            <div class="w-10 h-10 rounded-2xl bg-blue-100 text-brand-accent flex items-center justify-center mt-1 flex-shrink-0"><i class="ph-bold ph-list-checks text-xl"></i></div>
+            <div>
+                <h4 class="font-bold text-xl mb-1">Escolha organizada</h4>
+                <p class="text-brand-muted text-sm font-medium text-balance">O cliente entra, conhece seus serviços e escolhe exatamente o que precisa de forma visual e simples.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <div class="w-10 h-10 rounded-2xl bg-blue-100 text-brand-accent flex items-center justify-center mt-1 flex-shrink-0"><i class="ph-bold ph-magic-wand text-xl"></i></div>
+            <div>
+                <h4 class="font-bold text-xl mb-1">Informação mastigada</h4>
+                <p class="text-brand-muted text-sm font-medium text-balance">O site prepara um resumo perfeito com todas as escolhas do cliente, sem você precisar perguntar um por um.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-6">
+            <div class="w-10 h-10 rounded-2xl bg-blue-100 text-brand-accent flex items-center justify-center mt-1 flex-shrink-0"><i class="ph-bold ph-whatsapp-logo text-xl"></i></div>
+            <div>
+                <h4 class="font-bold text-xl mb-1 text-balance">Direto no seu WhatsApp</h4>
+                <p class="text-brand-muted text-sm font-medium text-balance">Tudo chega no seu celular em uma única mensagem estruturada. É só dar o "oi" final e receber o pagamento.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal" style="transition-delay: 0.2s;">
+        <div class="phone-mockup relative">
+          <div class="phone-screen bg-white flex flex-col">
+            <div class="bg-[#075E54] p-5 text-white flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-nowrap"><i class="ph-fill ph-storefront text-2xl"></i></div>
+              <div class="flex-1">
+                <div class="font-bold text-xs uppercase text-nowrap">Sua Empresa</div>
+                <div class="text-[9px] opacity-70">Online agora</div>
+              </div>
+              <i class="ph ph-phone text-nowrap"></i>
+            </div>
+            <div class="flex-1 p-5 flex flex-col justify-end bg-[#EFEAE2]">
+              <div class="bg-[#DCF8C6] p-4 rounded-2xl rounded-tr-none text-[#303030] text-[10px] shadow-sm mb-4 self-end animate-bounce max-w-[85%] leading-relaxed">
+                🚀 *NOVO PEDIDO PELO SITE!*<br><br>
+                📋 *Item:* Pacote Premium<br>
+                📅 *Data:* Hoje, às 16h<br>
+                👤 *Cliente:* João Almeida<br><br>
+                _Oi! Vi o site e quero fechar esse pacote._
+              </div>
+            </div>
+            <div class="bg-white p-4 flex items-center gap-3">
+              <div class="flex-1 bg-slate-100 h-10 rounded-full px-5 flex items-center text-slate-400 text-[10px]">Mensagem enviada</div>
+              <div class="w-10 h-10 rounded-full bg-[#128C7E] text-white flex items-center justify-center"><i class="ph-fill ph-paper-plane-tilt"></i></div>
+            </div>
+          </div>
+          <div class="absolute -inset-10 bg-brand-accent/5 blur-3xl -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="vagas" class="py-40 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-32 reveal">
+        <span class="text-brand-accent font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">Investimento Justo</span>
+        <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight font-display mb-8 text-balance">Escolha o seu plano</h2>
+        <p class="text-xl text-brand-muted font-medium text-balance max-w-2xl mx-auto">Valores claros e transparentes. Sem letras miúdas, apenas o que você precisa para crescer.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-10 items-stretch mb-20">
+        <!-- Google Business -->
+        <div class="pricing-card p-12 rounded-[2.5rem] bg-white flex flex-col reveal text-balance">
+          <h3 class="text-xl font-bold mb-4 uppercase">Google Negócios</h3>
+          <p class="text-slate-400 text-sm font-medium mb-10 text-balance">Sua loja no mapa do Google para atrair novos vizinhos.</p>
+          <div class="mb-10">
+            <span class="text-5xl font-black text-brand-dark">R$ 50</span>
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest ml-2">Mão de obra</span>
+          </div>
+          <ul class="space-y-4 mb-12 flex-1">
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-600"><i class="ph-bold ph-check text-brand-accent"></i> Cadastro no Google Maps</li>
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-600"><i class="ph-bold ph-check text-brand-accent"></i> Apareça nas buscas locais</li>
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-600"><i class="ph-bold ph-check text-brand-accent"></i> Atraia clientes do bairro</li>
+          </ul>
+          <a href="javascript:void(0)" onclick="sendPlanMessage('Google Negócios')" class="block w-full text-center py-4 rounded-xl border border-slate-100 font-bold text-xs uppercase tracking-widest hover:bg-brand-dark hover:text-white transition-all shadow-sm text-nowrap">Entrar em contato</a>
+        </div>
+
+        <!-- Site + Hosting -->
+        <div class="pricing-card p-12 rounded-[2.5rem] bg-white border-2 border-brand-accent shadow-xl shadow-blue-500/5 flex flex-col reveal text-balance" style="transition-delay: 0.1s;">
+          <h3 class="text-xl font-bold mb-4 uppercase">Site Profissional</h3>
+          <p class="text-slate-400 text-sm font-medium mb-10 text-balance">Sua página de vendas exclusiva com tudo pronto.</p>
+          <div class="mb-10 text-nowrap">
+            <span class="text-5xl font-black text-brand-dark text-nowrap">R$ 140</span>
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest ml-2 text-nowrap">Mão de obra</span>
+          </div>
+          <ul class="space-y-4 mb-12 flex-1">
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-600"><i class="ph-bold ph-check text-brand-accent"></i> Design Exclusivo</li>
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-600"><i class="ph-bold ph-check text-brand-accent"></i> Integração com WhatsApp</li>
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-600"><i class="ph-bold ph-check text-brand-accent"></i> Opção de Hospedagem Grátis</li>
+          </ul>
+          <a href="javascript:void(0)" onclick="sendPlanMessage('Site Profissional')" class="block w-full text-center py-4 rounded-xl bg-brand-accent text-white font-bold text-xs uppercase tracking-widest hover:bg-brand-dark transition-all shadow-md text-nowrap">Entrar em contato</a>
+        </div>
+
+        <!-- Combo 2 em 1 -->
+        <div class="pricing-card p-12 rounded-[2.5rem] bg-brand-dark text-white flex flex-col reveal text-balance" style="transition-delay: 0.2s;">
+          <h3 class="text-xl font-bold mb-4 text-blue-400 uppercase">Combo Completo</h3>
+          <p class="text-slate-400 text-sm font-medium mb-10 text-balance">A solução definitiva para máxima visibilidade e vendas.</p>
+          <div class="mb-10 text-nowrap">
+            <span class="text-5xl font-black text-nowrap">R$ 180</span>
+            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest ml-2 text-nowrap text-balance">Mão de obra</span>
+          </div>
+          <ul class="space-y-4 mb-12 flex-1">
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-300"><i class="ph-bold ph-check text-brand-accent"></i> Tudo do plano Site</li>
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-300"><i class="ph-bold ph-check text-brand-accent"></i> Google Negócios Incluso</li>
+            <li class="flex items-center gap-3 text-sm font-medium text-slate-300"><i class="ph-bold ph-check text-brand-accent"></i> Suporte Prioritário</li>
+          </ul>
+          <a href="javascript:void(0)" onclick="sendPlanMessage('Combo Completo')" class="block w-full text-center py-4 rounded-xl bg-white text-brand-dark font-bold text-xs uppercase tracking-widest hover:bg-brand-accent hover:text-white transition-all shadow-md text-nowrap">Entrar em contato</a>
+        </div>
+      </div>
+
+      <!-- Technical Notes -->
+      <div class="max-w-4xl mx-auto reveal text-balance">
+        <div class="bg-amber-50 border border-amber-100 p-6 rounded-3xl mb-8 flex items-center gap-4 shadow-sm text-balance">
+            <i class="ph-fill ph-warning-circle text-amber-500 text-2xl text-balance"></i>
+            <p class="text-xs md:text-sm text-amber-800 font-medium">
+                <span class="font-bold">Aviso importante:</span> Os valores abaixo são taxas de terceiros para manter seu site online. <span class="underline text-amber-900">Esses valores não são pagos para mim</span>, mas sim diretamente às empresas de registro e hospedagem.
+            </p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8 items-stretch">
+          <!-- Domínio Card -->
+          <div class="flex-1 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-6">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-accent flex items-center justify-center shrink-0">
+                <i class="ph ph-globe text-xl text-balance text-balance"></i>
+              </div>
+              <h4 class="font-bold text-brand-dark uppercase">Seu Nome na Web</h4>
+            </div>
+            <p class="text-sm text-slate-500 leading-relaxed text-balance">
+              O endereço do seu site (ex: <span class="font-bold text-brand-dark">loja.com.br</span>). O custo é de <span class="text-brand-dark font-bold text-nowrap">R$ 40,00 por ano</span>. Esse valor é pago para o <span class="italic font-bold text-brand-dark">Registro.br</span> para garantir que o nome seja só seu.
+            </p>
+          </div>
+
+          <!-- Hospedagem Card -->
+          <div class="flex-1 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-6 text-balance text-balance">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                <i class="ph ph-cloud-arrow-up text-xl text-balance text-balance text-nowrap"></i>
+              </div>
+              <h4 class="font-bold text-brand-dark uppercase">Hospedagem</h4>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <i class="ph ph-check text-green-600 mt-1"></i>
+                <p class="text-sm text-slate-500"><span class="font-bold text-brand-dark">Opção Grátis:</span> Eu configuro para você na Vercel. <span class="font-bold underline text-brand-dark">Custo zero</span> para sempre.</p>
+              </div>
+              <div class="flex items-start gap-3 text-balance">
+                <i class="ph ph-check text-blue-600 mt-1"></i>
+                <p class="text-sm text-slate-500"><span class="font-bold text-brand-dark text-nowrap text-balance">Opção Pro:</span> Se preferir uma estrutura paga, o custo médio é de <span class="font-bold text-brand-dark text-nowrap">R$ 15,00/mês</span> pagos à hospedagem.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand-dark text-white py-20 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+      <div>
+        <div class="font-display text-2xl font-extrabold tracking-tight mb-2">
+          MAYAN<span class="text-brand-accent">TECH</span>
+        </div>
+        <p class="text-xs text-slate-500 font-medium uppercase tracking-[0.2em]">Criando pontes digitais desde 2026</p>
+      </div>
+      
+      <div class="flex gap-10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+        <a href="#acervo" class="hover:text-white transition-colors">Portfólio</a>
+        <a href="#vagas" class="hover:text-white transition-colors">Preços</a>
+        <a href="javascript:void(0)" onclick="sendGeneralMessage()" class="text-brand-accent hover:brightness-110 transition-all">WhatsApp</a>
+      </div>
+
+      <div class="text-[9px] font-medium text-slate-600 uppercase tracking-[0.4em] text-center md:text-right">
+        © 2026 Mayan Tech • Belo Horizonte
+      </div>
+    </div>
+  </footer>
+
+  <!-- RESPONSIVE WA SIMULATOR (FULL SCREEN) -->
+  <div id="wa-simulator-overlay" class="font-sans text-balance text-nowrap">
+    <!-- Desktop -->
+    <div id="wa-desktop" class="hidden h-screen bg-[#111b21] md:flex items-center justify-center p-6">
+        <div class="w-full max-w-[1200px] h-full bg-[#222e35] shadow-2xl flex rounded-lg overflow-hidden border border-white/5">
+            <div class="w-[350px] border-r border-white/5 flex flex-col bg-[#111b21]">
+                <div class="h-16 bg-[#202c33] flex items-center px-4 justify-between">
+                    <div class="w-10 h-10 rounded-full bg-slate-600"></div>
+                    <div class="flex gap-6"><i class="ph ph-chat-circle-dots text-white/60 text-xl"></i><i class="ph ph-dots-three-vertical text-white/60 text-xl"></i></div>
+                </div>
+                <div class="flex-1 flex flex-col items-center justify-center text-center p-10 opacity-20">
+                    <i class="ph ph-whatsapp-logo text-8xl text-white mb-6"></i>
+                    <h2 class="text-white text-2xl font-light mb-2">WhatsApp Web</h2>
+                    <p class="text-xs text-white uppercase tracking-widest">Conexão Digital</p>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat">
+                <div class="h-16 bg-[#202c33] flex items-center px-4 gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-white font-display italic font-bold uppercase tracking-tighter shadow-lg shadow-blue-500/20">MT</div>
+                    <div class="flex-1">
+                        <div class="text-white font-medium">Mayan Tech Support</div>
+                        <div class="text-[10px] text-green-500 uppercase font-bold">Online Now</div>
+                    </div>
+                </div>
+                <div class="flex-1 p-10 flex flex-col justify-end">
+                    <div class="bg-wa-bubble rounded-xl rounded-tr-none p-6 shadow-md max-w-[500px] self-end relative border border-black/5">
+                        <pre id="desktop-msg" class="whitespace-pre-wrap font-sans text-sm text-[#111b21]"></pre>
+                        <div class="text-[10px] text-black/30 mt-3 text-right">sent now ✓✓</div>
+                    </div>
+                </div>
+                <div class="h-16 bg-[#202c33] flex items-center px-4 gap-4">
+                    <i class="ph ph-smiley text-white/60 text-2xl"></i>
+                    <div class="flex-1 bg-[#2a3942] h-10 rounded-lg px-4 flex items-center text-white/40 text-sm italic">Encaminhando sua mensagem...</div>
+                    <div id="desktop-send-btn" class="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-white shadow-lg cursor-pointer"><i class="ph-fill ph-paper-plane-tilt"></i></div>
+                </div>
+            </div>
+        </div>
+        <button onclick="closeSimulator()" class="absolute top-10 left-10 text-white/40 hover:text-white transition-colors flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] text-nowrap"><i class="ph ph-arrow-left"></i> VOLTAR AO SITE</button>
+    </div>
+
+    <!-- Mobile -->
+    <div id="wa-mobile" class="md:hidden h-screen bg-[#efeae2] flex flex-col text-balance text-nowrap">
+        <div class="bg-wa-header p-5 flex items-center gap-4 text-white shrink-0">
+            <button onclick="closeSimulator()"><i class="ph ph-arrow-left text-xl"></i></button>
+            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-display italic font-bold">MT</div>
+            <div class="flex-1">
+                <div class="font-bold text-base">Mayan Tech</div>
+                <div class="text-[10px] opacity-70 uppercase font-bold">Online agora</div>
+            </div>
+            <i class="ph ph-phone-fill text-xl"></i>
+        </div>
+        <div class="flex-1 bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat p-4 flex flex-col justify-end">
+            <div class="bg-white rounded-lg rounded-tl-none p-3 shadow-sm text-xs mb-4 self-start max-w-[80%]">👋 Olá! Recebemos sua mensagem pelo portfólio. Já vamos te responder!</div>
+            <div class="bg-wa-bubble rounded-lg rounded-tr-none p-4 shadow-md max-w-[90%] self-end relative text-balance text-nowrap">
+                <pre id="mobile-msg" class="whitespace-pre-wrap font-sans text-sm text-[#111b21] text-balance text-nowrap"></pre>
+                <div class="text-[10px] text-black/30 mt-2 text-right italic">visto agora ✓✓</div>
+            </div>
+        </div>
+        <div class="bg-[#f0f2f5] p-3 flex items-center gap-3 shrink-0">
+            <div class="flex-1 bg-white h-12 rounded-full px-5 flex items-center text-slate-400 text-sm italic">Sua mensagem foi enviada.</div>
+            <div id="mobile-send-btn" class="w-12 h-12 bg-wa-header rounded-full flex items-center justify-center text-white shadow-lg cursor-pointer"><i class="ph-fill ph-paper-plane-tilt"></i></div>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function getGreeting() {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 12) return "Bom dia";
+      if (hour >= 12 && hour < 18) return "Boa tarde";
+      return "Boa noite";
+    }
+
+    function sendPlanMessage(planName) {
+      const greeting = getGreeting();
+      const message = `${greeting}, tudo bem? Vi o seu site e achei muito massa! Fiquei bem interessado no plano *${planName}*, bora conversar pra eu te contar mais sobre a minha ideia?`;
+      
+      document.getElementById('desktop-msg').innerText = message;
+      document.getElementById('mobile-msg').innerText = message;
+      
+      // Update send buttons
+      const sendAction = () => openWhatsApp(message);
+      document.getElementById('desktop-send-btn').onclick = sendAction;
+      document.getElementById('mobile-send-btn').onclick = sendAction;
+      
+      document.getElementById('wa-simulator-overlay').classList.add('active');
+    }
+
+    function sendGeneralMessage() {
+      const greeting = getGreeting();
+      const message = `${greeting}, tudo bem? Acabei de ver o seu portfólio e curti muito o seu estilo. Gostaria de trocar uma ideia sobre um projeto que tenho em mente, você tem um tempinho?`;
+      
+      document.getElementById('desktop-msg').innerText = message;
+      document.getElementById('mobile-msg').innerText = message;
+      
+      // Update send buttons
+      const sendAction = () => openWhatsApp(message);
+      document.getElementById('desktop-send-btn').onclick = sendAction;
+      document.getElementById('mobile-send-btn').onclick = sendAction;
+      
+      document.getElementById('wa-simulator-overlay').classList.add('active');
+    }
+
+    function closeSimulator() {
+        document.getElementById('wa-simulator-overlay').classList.remove('active');
+    }
+  </script>
+</body>
+</html>� tem um tempinho?`;
+      
+      document.getElementById('desktop-msg').innerText = message;
+      document.getElementById('mobile-msg').innerText = message;
+      document.getElementById('wa-simulator-overlay').classList.add('active');
+    }
+
+    function closeSimulator() {
+        document.getElementById('wa-simulator-overlay').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
