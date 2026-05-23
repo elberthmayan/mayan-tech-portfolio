@@ -104,29 +104,29 @@
     </a>
 
     <!-- Nav -->
-    <nav class="fixed top-0 inset-x-0 z-50 h-20 flex items-center bg-white/90 backdrop-blur-md border-b border-bakery-linen px-8 lg:px-12 justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-bakery-terracotta rounded-xl flex items-center justify-center text-white shadow-lg shadow-bakery-terracotta/20">
-                <i class="ph-fill ph-bowl-food text-2xl"></i>
+    <nav class="fixed top-0 inset-x-0 z-50 h-20 flex items-center bg-white/90 backdrop-blur-md border-b border-bakery-linen px-4 md:px-8 lg:px-12 justify-between">
+        <div class="flex items-center gap-2 md:gap-3">
+            <div class="w-8 h-8 md:w-10 md:h-10 bg-bakery-terracotta rounded-xl flex items-center justify-center text-white shadow-lg shadow-bakery-terracotta/20">
+                <i class="ph-fill ph-bowl-food text-xl md:text-2xl"></i>
             </div>
-            <span class="font-display text-xl font-black tracking-tight text-bakery-cocoa uppercase">NOME DA DOCERIA</span>
+            <span class="font-display text-sm md:text-xl font-black tracking-tight text-bakery-cocoa uppercase">NOME DA DOCERIA</span>
         </div>
-        <button onclick="document.getElementById('cardapio').scrollIntoView()" class="bg-bakery-cocoa text-white px-8 py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-bakery-terracotta transition-all shadow-md">
+        <button onclick="document.getElementById('cardapio').scrollIntoView()" class="bg-bakery-cocoa text-white px-4 md:px-8 py-2 md:py-2.5 rounded-xl font-bold text-[8px] md:text-[10px] uppercase tracking-widest hover:bg-bakery-terracotta transition-all shadow-md">
             PEDIR AGORA
         </button>
     </nav>
 
     <!-- Hero -->
-    <header class="relative pt-44 pb-32 px-8 lg:px-12 min-h-[85vh] flex items-center text-center lg:text-left">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+    <header class="relative pt-32 md:pt-44 pb-20 md:pb-32 px-6 md:px-8 lg:px-12 min-h-[85vh] flex items-center text-center lg:text-left">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 md:gap-16 lg:gap-24 items-center">
             <div class="lg:col-span-7 reveal active text-balance">
-                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-8 text-bakery-cocoa text-balance">
+                <h1 class="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-6 md:mb-8 text-bakery-cocoa text-balance">
                     O Sabor Real do <br> <span class="text-bakery-terracotta italic underline decoration-bakery-linen decoration-8 underline-offset-4 text-balance">Doce Feito em Casa.</span>
                 </h1>
-                <p class="text-slate-600 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-lg mx-auto lg:mx-0 text-balance">
+                <p class="text-slate-600 text-base md:text-xl font-medium leading-relaxed mb-8 md:mb-12 max-w-lg mx-auto lg:mx-0 text-balance">
                     Eu sei que um docinho pode mudar o dia de alguém. Por isso, coloco todo o meu cuidado em cada fornada, usando ingredientes reais e muito carinho.
                 </p>
-                <button onclick="document.getElementById('cardapio').scrollIntoView()" class="bakery-btn px-12 py-5 rounded-2xl font-black text-lg shadow-xl shadow-bakery-cocoa/20 flex items-center justify-center gap-3">
+                <button onclick="document.getElementById('cardapio').scrollIntoView()" class="bakery-btn px-8 md:px-12 py-4 md:py-5 rounded-2xl font-black text-base md:text-lg shadow-xl shadow-bakery-cocoa/20 flex items-center justify-center gap-3 mx-auto lg:mx-0">
                     Ver cardápio <i class="ph ph-arrow-down"></i>
                 </button>
             </div>
@@ -141,20 +141,20 @@
     </header>
 
     <!-- História -->
-    <section id="historia" class="py-40 px-8 lg:px-12 overflow-hidden bg-white/30">
+    <section id="historia" class="py-20 md:py-40 px-6 md:px-8 lg:px-12 overflow-hidden bg-white/30">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
                 <div class="relative reveal order-2 lg:order-1">
-                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-bakery-terracotta/10 rounded-full blur-[80px]"></div>
-                    <div class="relative z-10 w-full aspect-[4/5] bakery-placeholder blob-img shadow-2xl border-8 border-white">
-                        <i class="ph ph-image-square text-6xl opacity-10"></i>
-                        <p class="text-[9px] font-black uppercase tracking-widest mt-4 opacity-30">Foto da sua Cozinha</p>
+                    <div class="absolute -top-10 -left-10 w-20 md:w-40 h-20 md:h-40 bg-bakery-terracotta/10 rounded-full blur-[40px] md:blur-[80px]"></div>
+                    <div class="relative z-10 w-full aspect-[4/5] bakery-placeholder blob-img shadow-2xl border-4 md:border-8 border-white">
+                        <i class="ph ph-image-square text-4xl md:text-6xl opacity-10"></i>
+                        <p class="text-[8px] md:text-[9px] font-black uppercase tracking-widest mt-4 opacity-30">Foto da sua Cozinha</p>
                     </div>
                 </div>
                 <div class="reveal order-1 lg:order-2 text-balance" style="transition-delay: 0.2s;">
-                    <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-6 block">Minha História</span>
-                    <h2 class="font-display text-5xl md:text-7xl font-bold mb-10 leading-tight">Onde a paixão se tornou <span class="italic text-bakery-terracotta">doçura.</span></h2>
-                    <p class="text-xl text-slate-500 font-medium leading-relaxed mb-10 text-balance">
+                    <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-4 md:mb-6 block">Minha História</span>
+                    <h2 class="font-display text-4xl md:text-7xl font-bold mb-6 md:mb-10 leading-tight">Onde a paixão se tornou <span class="italic text-bakery-terracotta">doçura.</span></h2>
+                    <p class="text-lg md:text-xl text-slate-500 font-medium leading-relaxed mb-10 text-balance">
                         O [Nome da Doceria] nasceu de um sonho e do amor pela cozinha. Cada receita aqui carrega um pedacinho da minha história e o compromisso de usar apenas o que há de melhor para você.
                     </p>
                 </div>
@@ -163,26 +163,26 @@
     </section>
 
     <!-- Cardápio Section -->
-    <section id="cardapio" class="py-40 px-8 lg:px-12">
+    <section id="cardapio" class="py-20 md:py-40 px-6 md:px-8 lg:px-12">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-32 reveal">
+            <div class="text-center mb-16 md:mb-32 reveal">
                 <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Menu Completo</span>
-                <h2 class="font-display text-5xl md:text-7xl font-black text-bakery-cocoa tracking-tighter italic">Escolha o seu mimo.</h2>
+                <h2 class="font-display text-4xl md:text-7xl font-black text-bakery-cocoa tracking-tighter italic">Escolha o seu mimo.</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                 <!-- Produto 1 -->
-                <div class="bg-white border border-bakery-linen rounded-[3rem] p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm">
-                    <div class="aspect-square rounded-[2.5rem] overflow-hidden mb-8 bakery-placeholder relative">
-                        <i class="ph ph-camera text-6xl opacity-10"></i>
+                <div class="bg-white border border-bakery-linen rounded-[2rem] md:rounded-[3rem] p-5 md:p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm">
+                    <div class="aspect-square rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden mb-6 md:mb-8 bakery-placeholder relative">
+                        <i class="ph ph-camera text-4xl md:text-6xl opacity-10"></i>
                         <p class="text-[8px] font-black uppercase tracking-widest mt-2 opacity-30">Foto do Produto</p>
                     </div>
                     <div class="flex-1 px-2">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Bolo de Cenoura</h3>
-                            <span class="text-xl font-black text-bakery-terracotta">R$ 45</span>
+                            <h3 class="text-xl md:text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Bolo de Cenoura</h3>
+                            <span class="text-lg md:text-xl font-black text-bakery-terracotta">R$ 45</span>
                         </div>
-                        <p class="text-slate-500 text-sm font-medium mb-10 leading-relaxed text-balance">Fofinho e com aquela calda de chocolate artesanal que a gente não resiste.</p>
+                        <p class="text-slate-500 text-sm font-medium mb-8 md:mb-10 leading-relaxed text-balance">Fofinho e com aquela calda de chocolate artesanal que a gente não resiste.</p>
                     </div>
                     <button onclick="addToCart('Bolo de Cenoura', 45)" class="bakery-btn w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">
                         Adicionar à cesta
@@ -190,17 +190,17 @@
                 </div>
 
                 <!-- Produto 2 -->
-                <div class="bg-white border border-bakery-linen rounded-[3rem] p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm" style="transition-delay: 0.1s;">
-                    <div class="aspect-square rounded-[2.5rem] overflow-hidden mb-8 bakery-placeholder relative">
-                        <i class="ph ph-camera text-6xl opacity-10"></i>
+                <div class="bg-white border border-bakery-linen rounded-[2rem] md:rounded-[3rem] p-5 md:p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm" style="transition-delay: 0.1s;">
+                    <div class="aspect-square rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden mb-6 md:mb-8 bakery-placeholder relative">
+                        <i class="ph ph-camera text-4xl md:text-6xl opacity-10"></i>
                         <p class="text-[8px] font-black uppercase tracking-widest mt-2 opacity-30">Foto do Produto</p>
                     </div>
                     <div class="flex-1 px-2">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Kit Brigadeiros</h3>
-                            <span class="text-xl font-black text-bakery-terracotta">R$ 38</span>
+                            <h3 class="text-xl md:text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Kit Brigadeiros</h3>
+                            <span class="text-lg md:text-xl font-black text-bakery-terracotta">R$ 38</span>
                         </div>
-                        <p class="text-slate-500 text-sm font-medium mb-10 leading-relaxed text-balance">Uma caixinha com 12 abraços em forma de brigadeiro gourmet.</p>
+                        <p class="text-slate-500 text-sm font-medium mb-8 md:mb-10 leading-relaxed text-balance">Uma caixinha com 12 abraços em forma de brigadeiro gourmet.</p>
                     </div>
                     <button onclick="addToCart('Kit de Brigadeiro', 38)" class="bakery-btn w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">
                         Adicionar à cesta
@@ -208,17 +208,17 @@
                 </div>
 
                 <!-- Produto 3 -->
-                <div class="bg-white border border-bakery-linen rounded-[3rem] p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm" style="transition-delay: 0.2s;">
-                    <div class="aspect-square rounded-[2.5rem] overflow-hidden mb-8 bakery-placeholder relative">
-                        <i class="ph ph-camera text-6xl opacity-10"></i>
+                <div class="bg-white border border-bakery-linen rounded-[2rem] md:rounded-[3rem] p-5 md:p-6 reveal flex flex-col group hover:border-bakery-terracotta transition-all shadow-sm" style="transition-delay: 0.2s;">
+                    <div class="aspect-square rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden mb-6 md:mb-8 bakery-placeholder relative">
+                        <i class="ph ph-camera text-4xl md:text-6xl opacity-10"></i>
                         <p class="text-[8px] font-black uppercase tracking-widest mt-2 opacity-30">Foto do Produto</p>
                     </div>
                     <div class="flex-1 px-2">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Torta de Limão</h3>
-                            <span class="text-xl font-black text-bakery-terracotta">R$ 15</span>
+                            <h3 class="text-xl md:text-2xl font-black text-bakery-cocoa uppercase tracking-tight">Torta de Limão</h3>
+                            <span class="text-lg md:text-xl font-black text-bakery-terracotta">R$ 15</span>
                         </div>
-                        <p class="text-slate-500 text-sm font-medium mb-10 leading-relaxed text-balance">O equilíbrio perfeito entre o azedinho e o doce, feita hoje.</p>
+                        <p class="text-slate-500 text-sm font-medium mb-8 md:mb-10 leading-relaxed text-balance">O equilíbrio perfeito entre o azedinho e o doce, feita hoje.</p>
                     </div>
                     <button onclick="addToCart('Torta de Limão', 15)" class="bakery-btn w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">
                         Adicionar à cesta
@@ -229,35 +229,35 @@
     </section>
 
     <!-- Avaliações Section -->
-    <section id="avaliacoes" class="py-32 px-8 bg-bakery-linen/20">
+    <section id="avaliacoes" class="py-20 md:py-32 px-6 md:px-8 bg-bakery-linen/20">
         <div class="max-w-7xl mx-auto text-center">
-            <div class="mb-24 reveal">
+            <div class="mb-16 md:mb-24 reveal">
                 <span class="text-bakery-terracotta font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Depoimentos</span>
-                <h2 class="font-display text-5xl md:text-7xl font-black text-bakery-cocoa tracking-tighter italic">O que estão falando...</h2>
+                <h2 class="font-display text-4xl md:text-7xl font-black text-bakery-cocoa tracking-tighter italic">O que estão falando...</h2>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="p-12 rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-10">
+                <div class="p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance">
                     <div class="flex text-yellow-500 mb-6 justify-center"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                    <p class="text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Gente, juro! É o melhor bolo que já comi. Dá pra sentir que é feito em casa mesmo, super fresquinho."</p>
-                    <p class="font-display font-bold text-xl uppercase tracking-tighter">Mari Albuquerque</p>
+                    <p class="text-base md:text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Gente, juro! É o melhor bolo que já comi. Dá pra sentir que é feito em casa mesmo, super fresquinho."</p>
+                    <p class="font-display font-bold text-lg md:text-xl uppercase tracking-tighter">Mari Albuquerque</p>
                 </div>
-                <div class="p-12 rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance" style="transition-delay: 0.1s;">
+                <div class="p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance" style="transition-delay: 0.1s;">
                     <div class="flex text-yellow-500 mb-6 justify-center"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                    <p class="text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Atendimento maravilhoso. Pedi pelo Zap e chegou impecável. Os brigadeiros sumiram em 5 minutos aqui em casa!"</p>
-                    <p class="font-display font-bold text-xl uppercase tracking-tighter">Ricardo Soares</p>
+                    <p class="text-base md:text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Atendimento maravilhoso. Pedi pelo Zap e chegou impecável. Os brigadeiros sumiram em 5 minutos aqui em casa!"</p>
+                    <p class="font-display font-bold text-lg md:text-xl uppercase tracking-tighter">Ricardo Soares</p>
                 </div>
-                <div class="p-12 rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance" style="transition-delay: 0.2s;">
+                <div class="p-8 md:p-12 rounded-[2.5rem] md:rounded-[4rem] bg-white border border-bakery-linen reveal shadow-sm text-balance" style="transition-delay: 0.2s;">
                     <div class="flex text-yellow-500 mb-6 justify-center"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                    <p class="text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Melhor escolha pro café da tarde. Simplesmente apaixonada pelo capricho e pelo sabor."</p>
-                    <p class="font-display font-bold text-xl uppercase tracking-tighter">Larissa Lima</p>
+                    <p class="text-base md:text-lg font-medium italic mb-10 text-bakery-cocoa leading-relaxed text-balance">"Melhor escolha pro café da tarde. Simplesmente apaixonada pelo capricho e pelo sabor."</p>
+                    <p class="font-display font-bold text-lg md:text-xl uppercase tracking-tighter">Larissa Lima</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer Minimalista -->
-    <footer class="py-12 px-8 bg-bakery-cocoa text-white">
+    <footer class="py-12 px-6 md:px-8 bg-bakery-cocoa text-white">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-bakery-terracotta rounded-lg flex items-center justify-center text-white">
@@ -266,7 +266,7 @@
                 <span class="font-display text-xl font-black tracking-tight uppercase">NOME DA DOCERIA</span>
             </div>
             
-            <div class="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-bakery-linen/50">
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-bakery-linen/50 text-center">
                 <a href="javascript:void(0)" onclick="openDirectWA()" class="hover:text-white transition-colors flex items-center gap-2 italic">
                     <i class="ph-fill ph-whatsapp-logo text-lg text-green-500"></i> Pedir pelo WhatsApp
                 </a>

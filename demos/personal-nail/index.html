@@ -109,21 +109,21 @@
     </a>
 
     <!-- Nav -->
-    <nav class="fixed top-0 inset-x-0 z-50 h-20 flex items-center px-6 lg:px-16 justify-between bg-luxury-beige/90 backdrop-blur-md border-b border-black/5">
-        <div class="font-display text-2xl font-bold italic text-luxury-gold tracking-tighter uppercase">NOME DO SEU ESPAÇO</div>
-        <button onclick="contactNail('Agendamento Geral')" class="bg-luxury-black text-white px-8 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-luxury-gold transition-all">
-            Consultar Horários Disponíveis
+    <nav class="fixed top-0 inset-x-0 z-50 h-20 flex items-center px-4 md:px-6 lg:px-16 justify-between bg-luxury-beige/90 backdrop-blur-md border-b border-black/5">
+        <div class="font-display text-lg md:text-2xl font-bold italic text-luxury-gold tracking-tighter uppercase">NOME DO SEU ESPAÇO</div>
+        <button onclick="contactNail('Agendamento Geral')" class="bg-luxury-black text-white px-4 md:px-8 py-2 md:py-2.5 text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-luxury-gold transition-all">
+            Consultar Horários
         </button>
     </nav>
 
     <!-- Hero -->
-    <header class="pt-48 pb-32 px-6 lg:px-16 max-w-7xl mx-auto text-center relative overflow-hidden">
+    <header class="pt-32 md:pt-48 pb-20 md:pb-32 px-6 lg:px-16 max-w-7xl mx-auto text-center relative overflow-hidden">
         <div class="reveal active">
-            <span class="inline-block text-[10px] font-bold uppercase tracking-[0.5em] mb-8 text-luxury-gold italic">Especialista em Alongamentos de Luxo</span>
-            <h1 class="font-display text-5xl md:text-8xl font-bold leading-tight mb-10 tracking-tighter">
+            <span class="inline-block text-[8px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] mb-6 md:mb-8 text-luxury-gold italic">Especialista em Alongamentos de Luxo</span>
+            <h1 class="font-display text-4xl sm:text-5xl md:text-8xl font-bold leading-tight mb-8 md:mb-10 tracking-tighter">
                 Sua melhor versão <br> <span class="italic text-luxury-gold">começa pelas mãos.</span>
             </h1>
-            <p class="text-luxury-slate text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-16 text-balance">
+            <p class="text-luxury-slate text-base md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-12 md:mb-16 text-balance">
                 Eu transformo suas unhas em obras de arte. Atendimento exclusivo com materiais premium para quem não abre mão da sofisticação.
             </p>
             <button onclick="document.getElementById('servicos').scrollIntoView()" class="inline-flex items-center gap-4 text-xs font-bold uppercase tracking-[0.4em] border-b-2 border-luxury-gold pb-2 hover:text-luxury-gold transition-all">
@@ -131,127 +131,127 @@
             </button>
         </div>
         
-        <div class="mt-20 max-w-5xl mx-auto reveal active" style="transition-delay: 0.3s;">
-            <div class="aspect-[21/9] rounded-[2rem] overflow-hidden luxury-placeholder border border-black/5 shadow-2xl">
-                <i class="ph ph-camera text-6xl opacity-20"></i>
-                <p class="text-[10px] font-bold uppercase tracking-[0.4em] mt-4 opacity-40">Sua Foto de Capa (Trabalho Principal)</p>
+        <div class="mt-12 md:mt-20 max-w-5xl mx-auto reveal active" style="transition-delay: 0.3s;">
+            <div class="aspect-video md:aspect-[21/9] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden luxury-placeholder border border-black/5 shadow-2xl">
+                <i class="ph ph-camera text-4xl md:text-6xl opacity-20"></i>
+                <p class="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.4em] mt-4 opacity-40">Sua Foto de Capa</p>
             </div>
         </div>
     </header>
 
     <!-- Serviços -->
-    <section id="servicos" class="py-32 px-6 lg:px-16 bg-white border-y border-black/5">
+    <section id="servicos" class="py-20 md:py-32 px-6 lg:px-16 bg-white border-y border-black/5">
         <div class="max-w-7xl mx-auto text-balance">
-            <div class="mb-20 reveal">
-                <h2 class="font-display text-4xl md:text-6xl font-bold mb-4 tracking-tighter italic">O Menu de Estilo.</h2>
+            <div class="mb-12 md:mb-20 reveal">
+                <h2 class="font-display text-3xl md:text-6xl font-bold mb-4 tracking-tighter italic">O Menu de Estilo.</h2>
                 <p class="text-luxury-slate uppercase text-[10px] font-bold tracking-[0.3em]">Escolha sua experiência</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
                 <!-- Fibra -->
-                <div onclick="contactNail('Alongamento em Fibra de Vidro')" class="luxury-card p-12 cursor-pointer group reveal">
-                    <div class="w-12 h-px bg-luxury-gold mb-10 group-hover:w-full transition-all duration-700"></div>
-                    <h3 class="font-display text-3xl font-bold mb-6 italic uppercase tracking-tighter">Alongamento em Fibra</h3>
-                    <ul class="space-y-4 mb-12">
+                <div onclick="contactNail('Alongamento em Fibra de Vidro')" class="luxury-card p-8 md:p-12 cursor-pointer group reveal">
+                    <div class="w-12 h-px bg-luxury-gold mb-8 md:mb-10 group-hover:w-full transition-all duration-700"></div>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mb-6 italic uppercase tracking-tighter">Alongamento em Fibra</h3>
+                    <ul class="space-y-4 mb-10 md:mb-12">
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Aspecto Ultra Natural</li>
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Alta Durabilidade e Resistência</li>
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Curvatura Perfeita</li>
                     </ul>
-                    <div class="text-2xl font-display italic text-luxury-gold">R$ 150</div>
+                    <div class="text-xl md:text-2xl font-display italic text-luxury-gold">R$ 150</div>
                 </div>
 
                 <!-- Banho de Gel -->
-                <div onclick="contactNail('Banho de Gel / Blindagem')" class="luxury-card p-12 cursor-pointer group reveal" style="transition-delay: 0.1s;">
-                    <div class="w-12 h-px bg-luxury-gold mb-10 group-hover:w-full transition-all duration-700"></div>
-                    <h3 class="font-display text-3xl font-bold mb-6 italic uppercase tracking-tighter">Banho de Gel</h3>
-                    <ul class="space-y-4 mb-12">
+                <div onclick="contactNail('Banho de Gel / Blindagem')" class="luxury-card p-8 md:p-12 cursor-pointer group reveal" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-px bg-luxury-gold mb-8 md:mb-10 group-hover:w-full transition-all duration-700"></div>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mb-6 italic uppercase tracking-tighter">Banho de Gel</h3>
+                    <ul class="space-y-4 mb-10 md:mb-12">
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Proteção para Unhas Naturais</li>
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Esmaltação que não descasca</li>
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Brilho intenso e duradouro</li>
                     </ul>
-                    <div class="text-2xl font-display italic text-luxury-gold">R$ 90</div>
+                    <div class="text-xl md:text-2xl font-display italic text-luxury-gold">R$ 90</div>
                 </div>
 
                 <!-- Manutenção -->
-                <div onclick="contactNail('Manutenção Premium')" class="luxury-card p-12 cursor-pointer group reveal" style="transition-delay: 0.2s;">
-                    <div class="w-12 h-px bg-luxury-gold mb-10 group-hover:w-full transition-all duration-700"></div>
-                    <h3 class="font-display text-3xl font-bold mb-6 italic uppercase tracking-tighter">Manutenção Premium</h3>
-                    <ul class="space-y-4 mb-12">
+                <div onclick="contactNail('Manutenção Premium')" class="luxury-card p-8 md:p-12 cursor-pointer group reveal" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-px bg-luxury-gold mb-8 md:mb-10 group-hover:w-full transition-all duration-700"></div>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mb-6 italic uppercase tracking-tighter">Manutenção Premium</h3>
+                    <ul class="space-y-4 mb-10 md:mb-12">
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Reposição e Nivelamento</li>
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Nova Esmaltação Inclusa</li>
                         <li class="flex items-center gap-3 text-xs text-luxury-slate"><i class="ph ph-sparkle text-luxury-gold"></i> Cuidado com a Saúde da Cutícula</li>
                     </ul>
-                    <div class="text-2xl font-display italic text-luxury-gold">R$ 120</div>
+                    <div class="text-xl md:text-2xl font-display italic text-luxury-gold">R$ 120</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Galeria Portfolio -->
-    <section class="py-32 px-6 lg:px-16 bg-luxury-beige">
+    <section class="py-20 md:py-32 px-6 lg:px-16 bg-luxury-beige">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 reveal">
-                <h2 class="font-display text-5xl font-bold italic tracking-tighter mb-4">Minhas Criações.</h2>
+            <div class="text-center mb-12 md:mb-20 reveal">
+                <h2 class="font-display text-3xl md:text-5xl font-bold italic tracking-tighter mb-4">Minhas Criações.</h2>
                 <p class="text-luxury-slate uppercase text-[10px] font-bold tracking-[0.4em]">Trabalhos Realizados</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-balance">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-balance">
                 <div class="aspect-[3/4] luxury-placeholder border border-black/5 flex items-center justify-center transition-all duration-700 reveal relative overflow-hidden group">
-                    <i class="ph ph-camera text-4xl opacity-10"></i>
+                    <i class="ph ph-camera text-2xl md:text-4xl opacity-10"></i>
                 </div>
                 <div class="aspect-[3/4] luxury-placeholder border border-black/5 flex items-center justify-center transition-all duration-700 reveal relative overflow-hidden group" style="transition-delay: 0.1s;">
-                    <i class="ph ph-camera text-4xl opacity-10"></i>
+                    <i class="ph ph-camera text-2xl md:text-4xl opacity-10"></i>
                 </div>
                 <div class="aspect-[3/4] luxury-placeholder border border-black/5 flex items-center justify-center transition-all duration-700 reveal relative overflow-hidden group" style="transition-delay: 0.2s;">
-                    <i class="ph ph-camera text-4xl opacity-10"></i>
+                    <i class="ph ph-camera text-2xl md:text-4xl opacity-10"></i>
                 </div>
                 <div class="aspect-[3/4] luxury-placeholder border border-black/5 flex items-center justify-center transition-all duration-700 reveal relative overflow-hidden group" style="transition-delay: 0.3s;">
-                    <i class="ph ph-camera text-4xl opacity-10"></i>
+                    <i class="ph ph-camera text-2xl md:text-4xl opacity-10"></i>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Dicas de Durabilidade -->
-    <section class="py-32 px-6 lg:px-16 bg-white">
+    <section class="py-20 md:py-32 px-6 lg:px-16 bg-white">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
                 <div class="reveal text-balance">
                     <span class="text-luxury-gold font-bold text-[10px] uppercase tracking-[0.4em] mb-4 block">Cuidado Pós-Procedimento</span>
-                    <h2 class="font-display text-4xl md:text-6xl font-bold mb-10 tracking-tighter italic">Dicas de Durabilidade.</h2>
-                    <p class="text-luxury-slate text-lg mb-12 font-light leading-relaxed text-balance">Para manter suas unhas impecáveis por mais tempo, alguns cuidados simples no dia a dia fazem toda a diferença.</p>
+                    <h2 class="font-display text-3xl md:text-6xl font-bold mb-8 md:mb-10 tracking-tighter italic">Dicas de Durabilidade.</h2>
+                    <p class="text-luxury-slate text-base md:text-lg mb-8 md:mb-12 font-light leading-relaxed text-balance">Para manter suas unhas impecáveis por mais tempo, alguns cuidados simples no dia a dia fazem toda a diferença.</p>
                     
                     <ul class="space-y-6">
-                        <li class="flex gap-6 items-start">
+                        <li class="flex gap-4 md:gap-6 items-start">
                             <div class="w-8 h-8 rounded-full bg-luxury-beige flex items-center justify-center shrink-0 text-luxury-gold"><i class="ph ph-hand-soap text-lg"></i></div>
                             <div class="text-balance">
-                                <h4 class="font-bold text-xs uppercase tracking-widest mb-1">Proteção Química</h4>
-                                <p class="text-xs text-luxury-slate leading-relaxed">Evite contato direto com produtos de limpeza fortes (como água sanitária) sem o uso de luvas.</p>
+                                <h4 class="font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1">Proteção Química</h4>
+                                <p class="text-[10px] md:text-xs text-luxury-slate leading-relaxed">Evite contato direto com produtos de limpeza fortes (como água sanitária) sem o uso de luvas.</p>
                             </div>
                         </li>
-                        <li class="flex gap-6 items-start">
+                        <li class="flex gap-4 md:gap-6 items-start">
                             <div class="w-8 h-8 rounded-full bg-luxury-beige flex items-center justify-center shrink-0 text-luxury-gold"><i class="ph ph-wrench text-lg"></i></div>
                             <div class="text-balance">
-                                <h4 class="font-bold text-xs uppercase tracking-widest mb-1">Uso Consciente</h4>
-                                <p class="text-xs text-luxury-slate leading-relaxed">Não utilize suas unhas como ferramentas para abrir latas ou remover adesivos.</p>
+                                <h4 class="font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1">Uso Consciente</h4>
+                                <p class="text-[10px] md:text-xs text-luxury-slate leading-relaxed">Não utilize suas unhas como ferramentas para abrir latas ou remover adesivos.</p>
                             </div>
                         </li>
-                        <li class="flex gap-6 items-start">
+                        <li class="flex gap-4 md:gap-6 items-start">
                             <div class="w-8 h-8 rounded-full bg-luxury-beige flex items-center justify-center shrink-0 text-luxury-gold"><i class="ph ph-drop text-lg"></i></div>
                             <div class="text-balance">
-                                <h4 class="font-bold text-xs uppercase tracking-widest mb-1">Hidratação</h4>
-                                <p class="text-xs text-luxury-slate leading-relaxed">Hidrate suas cutículas diariamente com óleos específicos para manter a saúde e o brilho.</p>
+                                <h4 class="font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1">Hidratação</h4>
+                                <p class="text-[10px] md:text-xs text-luxury-slate leading-relaxed">Hidrate suas cutículas diariamente com óleos específicos para manter a saúde e o brilho.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="reveal" style="transition-delay: 0.2s;">
-                    <div class="aspect-square bg-luxury-beige rounded-[4rem] flex items-center justify-center p-12 relative overflow-hidden">
-                        <div class="absolute inset-0 border-2 border-luxury-gold/20 m-8 rounded-[3rem]"></div>
-                        <i class="ph ph-sparkle text-[12rem] text-luxury-gold/10"></i>
+                    <div class="aspect-square bg-luxury-beige rounded-[2.5rem] md:rounded-[4rem] flex items-center justify-center p-8 md:p-12 relative overflow-hidden">
+                        <div class="absolute inset-0 border-2 border-luxury-gold/20 m-6 md:m-8 rounded-[2rem] md:rounded-[3rem]"></div>
+                        <i class="ph ph-sparkle text-[8rem] md:text-[12rem] text-luxury-gold/10"></i>
                         <div class="relative z-10 text-center text-balance">
-                            <p class="font-display italic text-4xl text-luxury-gold mb-4">Garantia de 7 dias</p>
-                            <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-luxury-slate">Para reparos estruturais</p>
+                            <p class="font-display italic text-2xl md:text-4xl text-luxury-gold mb-2 md:mb-4">Garantia de 7 dias</p>
+                            <p class="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-luxury-slate">Para reparos estruturais</p>
                         </div>
                     </div>
                 </div>
@@ -260,13 +260,13 @@
     </section>
 
     <!-- Depoimentos -->
-    <section class="py-32 px-6 lg:px-16 bg-luxury-black text-white">
-        <div class="max-w-5xl mx-auto text-center text-balance">
-            <div class="mb-20 reveal text-balance">
-                <div class="flex justify-center gap-1 text-luxury-gold mb-6 text-balance">
+    <section class="py-20 md:py-32 px-6 lg:px-16 bg-luxury-black text-white text-center">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12 md:mb-20 reveal text-balance">
+                <div class="flex justify-center gap-1 text-luxury-gold mb-6">
                     <i class="ph-fill ph-star text-xl"></i><i class="ph-fill ph-star text-xl"></i><i class="ph-fill ph-star text-xl"></i><i class="ph-fill ph-star text-xl"></i><i class="ph-fill ph-star text-xl"></i>
                 </div>
-                <h2 class="font-display text-4xl md:text-6xl font-bold italic tracking-tighter mb-12 text-balance">"Sempre impecável, <br> nunca saio insatisfeita."</h2>
+                <h2 class="font-display text-3xl md:text-6xl font-bold italic tracking-tighter mb-8 md:mb-12 text-balance">"Sempre impecável, <br> nunca saio insatisfeita."</h2>
                 <p class="text-luxury-gold font-bold text-[10px] uppercase tracking-[0.5em] text-balance">Ana Paula, Cliente VIP</p>
             </div>
         </div>
@@ -274,10 +274,10 @@
 
     <!-- Footer -->
     <footer class="py-12 px-6 bg-luxury-black border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
             <div class="font-display text-xl font-bold italic text-luxury-gold uppercase tracking-tighter">NOME DO SEU ESPAÇO</div>
             
-            <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
                 <a href="javascript:void(0)" onclick="openDirectWA()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-luxury-gold transition-colors flex items-center gap-3 italic">
                     <i class="ph-fill ph-whatsapp-logo text-xl text-green-500"></i> Agendar pelo WhatsApp
                 </a>
